@@ -10,6 +10,9 @@ import { HomeComponent } from './View/Pages/home/home.component';
 import { HeaderComponent } from './View/Components/header/header.component';
 import { FooterComponent } from './View/Components/footer/footer.component';
 
+/* Importaciones de prime ng */
+import { ButtonModule } from 'primeng/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +24,7 @@ import { FooterComponent } from './View/Components/footer/footer.component';
     BrowserModule,
     AppRoutingModule,
     SlickCarouselModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
