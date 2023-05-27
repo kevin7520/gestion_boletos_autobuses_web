@@ -1,12 +1,12 @@
-<header style="background-color:rgb(1, 54, 134)" class="select-none w-full flex justify-content-center flex-wrap fixed top-0 left-0 z-5 py-2">
-  <div class="w-10 grid">
+<header style="background-color:rgb(1, 54, 134)" class="select-none w-full flex justify-content-center flex-wrap fixed top-0 left-0 z-5 py-2 grid m-0 p-2">
+  <div class="col grid">
     <div class="w-max py-0 flex align-content-center flex-wrap">
       <img class="h-4rem" src="../../../../assets/Images/icons/logo_cte.webp" alt="logo">
     </div>
     <div class="col p-0 mt-2">
       <ul class="text-white flex list-none text-sm my-3 pl-0">
         <li class="flex-1 flex justify-content-center flex-wrap"> 
-          <p class="cursor-pointer select-none" (click)="cambioSection('inicio')">X Inicio</p> 
+          <p class="cursor-pointer select-none" (click)="cambioSection('inicio')">{{'header.inicio' | translate}}</p> 
         </li>
         <li class="flex-1 flex justify-content-center flex-wrap">
           <p class="cursor-pointer select-none" (click)="cambioSection('quines_somos')">X Quienes somos</p> 
@@ -15,12 +15,18 @@
           <p class="cursor-pointer select-none" (click)="cambioSection('horarios')">X Horarios</p>
         </li>
         <li class="flex-1 flex justify-content-center flex-wrap">
-          <p class="cursor-pointer select-none" (click)="cambioSection('inicio2')">X Venta en linea</p>
+          <p class="cursor-pointer select-none" (click)="cambioSection('venta_boletos')">X Venta en linea</p>
         </li>
         <li class="flex-1 flex justify-content-center flex-wrap">
-          <p class="cursor-pointer select-none" (click)="cambioSection('horarios')">X Oficinas</p>
+          <p class="cursor-pointer select-none" (click)="cambioSection('oficinas')">X Oficinas</p>
+        </li>
+        <li class="flex-1 flex justify-content-center flex-wrap">
+          <p class="cursor-pointer select-none" (click)="cambioSection('horarios')">X Iniciar sesión</p>
         </li>
       </ul>
     </div>
+  </div>
+  <div class="w-max px-3">
+    <p>X Español</p>
   </div>
 </header>

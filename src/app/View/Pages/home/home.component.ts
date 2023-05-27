@@ -11,13 +11,20 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  cambiarSection(section : any){
+  cambiarSection(section : string){
     console.log(section);
     const sectionTnp = document.getElementById(section);
     if (sectionTnp) {
-      const offset = sectionTnp.offsetTop - 60;
+      let offset = sectionTnp.offsetTop - 60;
+      if(section != 'inicio'){
+        offset = offset-50;
+      }
       window.scrollTo({ top: offset, behavior: 'smooth' });
     }
   }
+  visible = false;
+  showDialog() {
+    this.visible = true;
+}
 
 }
