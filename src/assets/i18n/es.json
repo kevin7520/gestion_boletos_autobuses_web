@@ -1,5 +1,9 @@
 {
     "header" : {
-        "inicio" : "Inicio"
+        "inicio" : "Inicio",
+        "quines_somos": "Quienes somos"
+    },
+    "home" : {
+        
     }
 }
