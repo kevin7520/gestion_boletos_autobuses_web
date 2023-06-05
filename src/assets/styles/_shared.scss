@@ -1,0 +1,37 @@
+
+h2{
+    font-family: 'Amaranth';
+}
+
+hr {
+    border: 0.2rem solid rgb(1, 54, 134);
+    margin: 0 auto;
+    border-radius: 1rem;
+    margin-top: 0.6rem;
+}
+.p-button {
+    padding: 0.40rem 0.65rem!important;
+    transition: background-color 0.2s, color 0.01s, border-color 0.2s, box-shadow 0.2s !important;
+}
+
+.p-button-label{
+    font-size: 14px;
+}
+
+.button-primary .p-button {
+    background-color: rgb(1, 54, 134);
+}
+
+.button-primary .p-button.p-button:enabled:hover {
+    color: rgb(253, 221, 54);
+    background-color: rgb(1, 54, 134);
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon{
+    color: rgb(172, 12, 12)!important;
+}
+
+.mt-9{
+    margin-top : 6rem;
+}
+

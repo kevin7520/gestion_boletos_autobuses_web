@@ -1,32 +1,56 @@
-<header style="background-color:rgb(1, 54, 134)" class="select-none w-full flex justify-content-center flex-wrap fixed top-0 left-0 z-5 py-2 grid m-0 p-2">
-  <div class="col grid">
-    <div class="w-max py-0 flex align-content-center flex-wrap">
-      <img class="h-4rem" src="../../../../assets/Images/icons/logo_cte.webp" alt="logo">
+<div class="header">
+  <header class="bg-color-primary select-none w-full flex justify-content-center flex-wrap fixed top-0 left-0 z-5 py-2 grid m-0 p-2">
+    <div class="col grid">
+      <div class="w-max py-0 flex align-content-center flex-wrap">
+        <img class="h-4rem" src="../../../../assets/Images/icons/logo_cte.webp" alt="logo">
+      </div>
+      <div class="col p-0 mt-2">
+        <ul class="lista-elemnt flex list-none text-sm my-3 pl-0">
+          <li class="flex-1 flex justify-content-center flex-wrap"> 
+            <p class="cursor-pointer select-none" (click)="cambioSection('inicio')">{{'header.inicio' | translate}}</p> 
+          </li>
+          <li class="flex-1 flex justify-content-center flex-wrap">
+            <p class="cursor-pointer select-none" (click)="cambioSection('quines_somos')">{{'header.quienes_somos' | translate}}</p> 
+          </li>
+          <li class="flex-1 flex justify-content-center flex-wrap">
+            <p class="cursor-pointer select-none" (click)="cambioSection('horarios')">{{'header.horarios' | translate}}</p>
+          </li>
+          <li class="flex-1 flex justify-content-center flex-wrap">
+            <p class="cursor-pointer select-none" (click)="cambioSection('venta_boletos')">{{'header.venta_en_linea' | translate}}</p>
+          </li>
+          <li class="flex-1 flex justify-content-center flex-wrap">
+            <p class="cursor-pointer select-none" (click)="cambioSection('oficinas')">{{'header.oficinas' | translate}}</p>
+          </li>
+          <li class="flex-1 flex justify-content-center flex-wrap">
+            <p class="cursor-pointer select-none" (click)="abrirModal()">{{'header.iniciar_sesion' | translate}}</p>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="col p-0 mt-2">
-      <ul class="text-white flex list-none text-sm my-3 pl-0">
-        <li class="flex-1 flex justify-content-center flex-wrap"> 
-          <p class="cursor-pointer select-none" (click)="cambioSection('inicio')">{{'header.inicio' | translate}}</p> 
-        </li>
-        <li class="flex-1 flex justify-content-center flex-wrap">
-          <p class="cursor-pointer select-none" (click)="cambioSection('quines_somos')">{{'header.quienes_somos' | translate}}</p> 
-        </li>
-        <li class="flex-1 flex justify-content-center flex-wrap">
-          <p class="cursor-pointer select-none" (click)="cambioSection('horarios')">{{'header.horarios' | translate}}</p>
-        </li>
-        <li class="flex-1 flex justify-content-center flex-wrap">
-          <p class="cursor-pointer select-none" (click)="cambioSection('venta_boletos')">{{'header.venta_en_linea' | translate}}</p>
-        </li>
-        <li class="flex-1 flex justify-content-center flex-wrap">
-          <p class="cursor-pointer select-none" (click)="cambioSection('oficinas')">{{'header.oficinas' | translate}}</p>
-        </li>
-        <li class="flex-1 flex justify-content-center flex-wrap">
-          <p class="cursor-pointer select-none" (click)="cambioSection('horarios')">{{'header.iniciar_sesion' | translate}}</p>
-        </li>
-      </ul>
+    <div class="w-2 p-2 flex justify-content-center align-content-center flex-wrap relative top-0">
+      <p-dropdown class="pb-2" 
+                  [options]="idioma_array" 
+                  [(ngModel)]="selectedIdioma" 
+                  [editable]="false"
+                  (onChange) ="cambioIdioma($event)"
+                  optionLabel="name">
+      </p-dropdown>
     </div>
-  </div>
-  <div class="w-max px-3">
-    <p>X Español</p>
-  </div>
-</header>
+  </header>
+
+  <!-- Modales -->
+  <p-dialog header="Y Iniciar Sección" [showHeader]="true"[(visible)]="inicioSeccion" [modal]="true" [style]="{ width: '30vw' }" [draggable]="false" [resizable]="false">
+    <span class="p-float-label mt-4 inicio-sesion">
+      <input class="w-full" pInputText id="username" [(ngModel)]="credenciales.correo" />
+      <label htmlFor="username">X Correo electronico</label>
+    </span>
+    <span class="p-float-label mt-6 inicio-sesion">
+      <input class="w-full" pInputText id="username" [(ngModel)]="credenciales.contrasena" />
+      <label htmlFor="username">Y Contraseña</label>
+    </span>
+    <div class="w-full flex justify-content-center flex-wrap mt-5">
+      <p-button class="button-primary" label="Y Continuar"></p-button>
+    </div>
+  </p-dialog>
+
+</div>

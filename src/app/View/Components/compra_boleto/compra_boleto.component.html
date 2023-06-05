@@ -1,0 +1,40 @@
+<div class="compra-boleto h-screen flex align-content-center flex-wrap">
+  <div class="pt-8 w-full flex justify-content-center flex-wrap">
+    <div class="w-6">
+      <h2 class="w-full text-center text-4xl font-bold">
+        XX Comprar Boleto
+      </h2>
+      <hr>
+    </div>
+    <div class="w-8 grid mt-4">
+      <div class="col-6 flex justify-content-center flex-wrap">
+        <p class="w-12 text-center">XX Ciudad Partida</p>
+        <p-dropdown class="w-6 mt-4" 
+                    [options]="ciudades" 
+                    [(ngModel)]="ciudadPartida" 
+                    [editable]="false"
+                    optionLabel="name">
+        </p-dropdown>
+      </div>
+      <div class="col-6 flex justify-content-center flex-wrap">
+        <p class="w-12 text-center">XX Ciudad Llegada</p>
+        <p-dropdown class="w-6 mt-4" 
+                    [options]="ciudades" 
+                    [(ngModel)]="ciudadPartida" 
+                    [editable]="false"
+                    optionLabel="name">
+        </p-dropdown>
+      </div>
+    </div>
+    <div class="w-8 mt-5 border-round-2xl border-color-radius div-comprar-boleto">
+      <div class="mt-0 p-2 border-round-2xl border-noround-bottom bg-color-tercero">
+        <p class="text-white">XX Eligir horario</p>
+      </div>
+      <p>Hola</p>
+      <p>Hola</p>
+      <p>Hola</p>
+      <p>Hola</p>
+      <p>Hola</p>
+    </div>
+  </div>
+</div>

@@ -16,4 +16,8 @@ export class AppComponent {
     const langToUse = browserLang ? browserLang.match(/en|es/) ? browserLang : 'es' : 'es';
     this.translateService.use(langToUse);
   }
+
+  cambiarIdioma(idioma: string) {
+    this.translateService.use(idioma);
+  }
 }

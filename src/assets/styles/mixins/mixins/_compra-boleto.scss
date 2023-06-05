@@ -1,0 +1,42 @@
+@mixin compra-boleto {
+
+    .border-color-radius {
+        border: 1px solid rgba(192, 192, 192, 0.671);
+    }
+    .p-inputtext{
+        padding: 7px;
+        font-size: 14px;
+    }
+    .p-dropdown:not(.p-disabled):hover{
+        border-color: #ced4da;
+    }
+    .p-dropdown:not(.p-disabled).p-focus{
+        border-color: #ced4da;
+    }
+    .p-dropdown:not(.p-disabled).p-focus{
+        box-shadow: none;
+    }
+    .p-dropdown{
+        width: 100%;
+    }
+    .p-dropdown-panel .p-dropdown-items .p-dropdown-item{
+        padding: 3px;
+        font-size: 14px;
+    }
+    .p-dropdown-panel .p-dropdown-items{
+        padding: 0.30rem;
+    }
+    .p-dropdown-items-wrapper {
+        margin-top: 5px;
+    }
+    .p-dropdown-panel {
+        margin-left: 6px;
+    }
+
+    /*Clases para página*/
+    .div-comprar-boleto{
+        min-height: 150px;
+        max-height: 250px;
+    }
+
+}

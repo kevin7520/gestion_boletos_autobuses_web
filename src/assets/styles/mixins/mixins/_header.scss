@@ -1,0 +1,45 @@
+@mixin header {
+    .lista-elemnt{
+        color: white;
+    }
+    .lista-elemnt :hover{
+        color: rgb(253, 221, 54);
+    }
+    .p-inputtext{
+        padding: 3px;
+        font-size: 14px;
+    }
+    .inicio-sesion .p-inputtext{
+        padding: 10px !important;
+    }
+    .p-dropdown:not(.p-disabled):hover{
+        border-color: transparent;
+    }
+    .p-dropdown:not(.p-disabled).p-focus{
+        box-shadow: none;
+    }
+    .p-dropdown-panel .p-dropdown-items .p-dropdown-item{
+        padding: 3px;
+        font-size: 14px;
+    }
+    .p-dropdown-panel .p-dropdown-items{
+        padding: 0.30rem;
+    }
+    .p-dropdown-items-wrapper {
+        margin-top: 5px;
+    }
+    .p-dropdown-panel {
+        margin-left: 6px;
+    }
+    
+    .p-dialog .p-dialog-header .p-dialog-title{
+        color: rgb(1, 54, 134);
+    }
+
+    .p-float-label label{
+        font-size: 14px;
+    }
+    .p-float-label input:focus ~ label, .p-float-label input.p-filled ~ label, .p-float-label textarea:focus ~ label, .p-float-label textarea.p-filled ~ label, .p-float-label .p-inputwrapper-focus ~ label, .p-float-label .p-inputwrapper-filled ~ label{
+        font-size: 13px;
+    }
+}

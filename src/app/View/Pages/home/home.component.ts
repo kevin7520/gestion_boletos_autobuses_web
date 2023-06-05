@@ -1,14 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit {
 
-  constructor() { }
+  constructor(private _activateRoute: ActivatedRoute, private router: Router) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    
+  }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    this.cambiarSection(String(this._activateRoute.snapshot.queryParamMap.get('id')));
   }
 
   cambiarSection(section : string){
@@ -22,9 +29,16 @@ export class HomeComponent implements OnInit {
       window.scrollTo({ top: offset, behavior: 'smooth' });
     }
   }
-  visible = false;
-  showDialog() {
-    this.visible = true;
-}
+  
+  visibleModal = false;
+  rutaImagen : string = '';
+  showDialog(rutaImagen : string) {
+    this.rutaImagen = rutaImagen;
+    this.visibleModal = true;
+  }
+
+  cambiarPantalla(){
+    this.router.navigate(['/comprar-boleto-home']);
+  }
 
 }
