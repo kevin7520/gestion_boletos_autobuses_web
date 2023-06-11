@@ -1,40 +1,140 @@
 <div class="compra-boleto h-screen flex align-content-center flex-wrap">
-  <div class="pt-8 w-full flex justify-content-center flex-wrap">
-    <div class="w-6">
-      <h2 class="w-full text-center text-4xl font-bold">
-        XX Comprar Boleto
-      </h2>
-      <hr>
-    </div>
-    <div class="w-8 grid mt-4">
-      <div class="col-6 flex justify-content-center flex-wrap">
-        <p class="w-12 text-center">XX Ciudad Partida</p>
-        <p-dropdown class="w-6 mt-4" 
-                    [options]="ciudades" 
-                    [(ngModel)]="ciudadPartida" 
-                    [editable]="false"
-                    optionLabel="name">
-        </p-dropdown>
-      </div>
-      <div class="col-6 flex justify-content-center flex-wrap">
-        <p class="w-12 text-center">XX Ciudad Llegada</p>
-        <p-dropdown class="w-6 mt-4" 
-                    [options]="ciudades" 
-                    [(ngModel)]="ciudadPartida" 
-                    [editable]="false"
-                    optionLabel="name">
-        </p-dropdown>
+  <div class="pt-8 w-full flex-wrap grid m-0">
+    <div class="col-4">
+      <div class="w-12">
+        <h2 class="w-full text-center text-4xl font-bold mt-5">
+          XComprar Boleto
+        </h2>
+        <div class="mt-5">
+          <p-steps [model]="pasosCompraBoleto" [readonly]="true" [(activeIndex)]="id"></p-steps>
+        </div>
       </div>
     </div>
-    <div class="w-8 mt-5 border-round-2xl border-color-radius div-comprar-boleto">
-      <div class="mt-0 p-2 border-round-2xl border-noround-bottom bg-color-tercero">
-        <p class="text-white">XX Eligir horario</p>
+    <div class="col-8">
+      <div *ngIf="id==1" class="mt-7 w-12 flex justify-content-center align-content-center flex-wrap">
+        <div class="w-12 grid">
+          <div class="col-6 flex justify-content-center flex-wrap">
+            <p class="w-12 text-center">XX Ciudad Partida</p>
+            <p-dropdown class="w-6 mt-2" 
+                        [options]="ciudadesPartidaData" 
+                        [(ngModel)]="ciudadPartida" 
+                        [editable]="false"
+                        (onChange) ="cambioCiudadPartida($event)"
+                        optionLabel="ciudad">
+            </p-dropdown>
+          </div>
+          <div class="col-6 flex justify-content-center flex-wrap">
+            <p class="w-12 text-center">XX Ciudad Llegada</p>
+            <p-dropdown class="w-6 mt-2" 
+                        [options]="ciudadesLlegadaData" 
+                        [(ngModel)]="ciudadLlegada" 
+                        [editable]="false"
+                        (onChange) ="cambioCiudadDestino($event)"
+                        optionLabel="ciudad">
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="w-11 mt-3 border-round-2xl border-color-radius div-comprar-boleto">
+          <div class="mt-0 p-2 border-round-2xl border-noround-bottom bg-color-tercero">
+            <p class="text-white">XX Eligir horario</p>
+          </div>
+          <div class="px-3 py-2 grid m-0 w-full">
+            <div class="col-12 py-1 grid m-0 bg-color-azul-bajo">
+              <div class="col-2 py-0">
+                <p class="text-sm w-full text-center font-medium">X Placa Bus</p>
+              </div>
+              <div class="col-3 py-0">
+                <p class="text-sm w-full text-center font-medium">X Fecha de salida</p>
+              </div>
+              <div class="col-3 py-0">
+                <p class="text-sm w-full text-center font-medium">X Hora de salida</p>
+              </div>
+              <div class="col-2 py-0">
+                <p class="text-sm w-full text-center font-medium">X Precio</p>
+              </div>
+              <div class="col-2 py-0">
+                <p class="text-sm w-full text-center font-medium">X Seleccionar</p>
+              </div>
+            </div>
+            <div class="col-12 py-1 px-0 m-0 grid" *ngFor="let boleto of boletos">
+              <div class="col-2 py-0 flex justify-content-center align-content-center flex-wrap">
+                <p class="text-sm w-max">{{boleto.placa_bus}}</p>
+              </div>
+              <div class="col-3 py-0 flex justify-content-center align-content-center flex-wrap">
+                <p class="text-sm w-max">{{boleto.fecha_salida | date:'yyyy-MM-dd'}}</p>
+              </div>
+              <div class="col-3 py-0 flex justify-content-center align-content-center flex-wrap">
+                <p class="text-sm w-max">{{boleto.hora_salida | hora}}</p>
+              </div>
+              <div class="col-2 py-0 flex justify-content-center align-content-center flex-wrap">
+                <p class="text-sm w-max">{{boleto.precio_boleto | currency}}</p>
+              </div>
+              <div class="col-2 py-0 flex justify-content-center align-content-center flex-wrap">
+                <p-button (onClick)="seleccionarBoleto(boleto.id_boleto)" class="button-primary" label="Y Comprar"></p-button>
+              </div>
+              <div class="table w-full mt-1">
+                <hr>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <p>Hola</p>
-      <p>Hola</p>
-      <p>Hola</p>
-      <p>Hola</p>
-      <p>Hola</p>
+      <div *ngIf="id==0" class="w-12 flex justify-content-center flex-wrap">
+        <div class="grid mt-0 w-5">
+          <div class="w-4">
+            <img src="../../../../assets/Images/icons/asiento-libre.svg" alt="asiento libre">
+            <img src="../../../../assets/Images/icons/asiento-ocupado.svg" alt="asiento ocupado">
+          </div>
+          <div class="w-8 grid div-seleccionar-asientos">
+            <div class="width-40 grid m-0 p-0">
+              <ng-container  *ngFor="let asientosBus of asientos">
+                <div class="col-6" *ngIf="asientosBus.asiento.charAt(0) == 'A'">
+                  <div class="w-full flex justify-content-center flex-wrap">
+                    <fa-icon [icon]="icon_bus_asiento"></fa-icon>
+                  </div>
+                  <p class="w-full text-center">{{asientosBus.asiento}}</p>
+                </div>
+              </ng-container>        
+            </div>
+            <div class="width-20">
+            </div>
+            <div class="width-40 grid m-0 p-0">
+                <ng-container  *ngFor="let asientosBus of asientos">
+                  <div class="col-6" *ngIf="asientosBus.asiento.charAt(0) == 'B'">
+                    <div class="w-full flex justify-content-center flex-wrap">
+                      <fa-icon [icon]="icon_bus_asiento"></fa-icon>
+                    </div>
+                    <p class="w-full text-center">{{asientosBus.asiento}}</p>
+                  </div>
+                </ng-container>        
+            </div>
+            <div class="col-12 grid m-0 p-0">
+              <ng-container  *ngFor="let asientosBus of asientos">
+                <div class="width-20" *ngIf="asientosBus.asiento.charAt(0) == 'C'">
+                  <div class="w-full flex justify-content-center flex-wrap">
+                    <fa-icon [icon]="icon_bus_asiento"></fa-icon>
+                  </div>
+                  <p class="w-full text-center">{{asientosBus.asiento}}</p>
+                </div>
+              </ng-container>        
+            </div>
+            <!-- <div class="inline-block col-2 p-0 flex justify-content-center flex-wrap" *ngFor="let asientosBus of asientos">
+              <div class="w-max">
+                <fa-icon [icon]="icon_bus"></fa-icon>
+                <p>{{asientosBus.asiento}}</p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+  <div class="loading-overlay" *ngIf="spinner">
+    <div class="loading-container">
+      <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" animationDuration="1.5s"></p-progressSpinner>
     </div>
   </div>
 </div>
+
+<p-toast key="comprar-boleto" position="top-right"></p-toast>

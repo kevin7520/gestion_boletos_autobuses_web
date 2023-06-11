@@ -17,17 +17,28 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
+import { DividerModule } from 'primeng/divider';
+import { MenuModule } from 'primeng/menu';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { StepsModule } from 'primeng/steps';
 
 /* Componentes creados */
 import { GB_dialogComponent } from './View/Components/GB_dialog/GB_dialog.component';
 import { GB_buttonComponent } from './View/Components/GB_button/GB_button.component';
 import { Compra_boletoComponent } from './View/Components/compra_boleto/compra_boleto.component';
+import { ClienteComponent } from './View/Pages/cliente/cliente.component';
 
 /* Traducción */
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
+import { HoraPipe } from './View/Pipes/hora.pipe';
+
+/* Font Awesome */
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -42,7 +53,9 @@ export function createTranslateLoader(http: HttpClient) {
     FooterComponent,
     GB_dialogComponent,
     GB_buttonComponent,
-    Compra_boletoComponent
+    Compra_boletoComponent,
+    ClienteComponent,
+    HoraPipe
   ],
   imports: [
     BrowserModule,
@@ -64,8 +77,14 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
+    ToastModule,
+    DividerModule,
+    MenuModule,
+    ProgressSpinnerModule,
+    StepsModule,
+    FontAwesomeModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
