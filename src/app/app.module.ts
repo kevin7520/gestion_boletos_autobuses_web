@@ -22,6 +22,8 @@ import { DividerModule } from 'primeng/divider';
 import { MenuModule } from 'primeng/menu';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { StepsModule } from 'primeng/steps';
+import { RadioButtonModule } from 'primeng/radiobutton';
+
 
 /* Componentes creados */
 import { GB_dialogComponent } from './View/Components/GB_dialog/GB_dialog.component';
@@ -82,7 +84,8 @@ export function createTranslateLoader(http: HttpClient) {
     MenuModule,
     ProgressSpinnerModule,
     StepsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RadioButtonModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

@@ -27,6 +27,18 @@ hr {
     background-color: rgb(1, 54, 134);
 }
 
+.button-segundary .p-button {
+    background-color: #ffc907;
+    border: 1px solid #ffc907;
+    color: white;
+}
+
+.button-segundary .p-button.p-button:enabled:hover {
+    background-color: #ffc907;
+    color: rgb(1, 54, 134);
+    border: 1px solid #ffc907;
+}
+
 .p-dialog .p-dialog-header .p-dialog-header-icon{
     color: rgb(172, 12, 12)!important;
 }
@@ -37,4 +49,15 @@ hr {
 
 .p-dialog-mask{
     background-color: rgba(0, 0, 0, 0.815)!important;
+}
+
+.p-radiobutton .p-radiobutton-box.p-highlight{
+    border-color: #efbe09!important;
+    background: #efbe09!important;
+}
+
+.cursor-not-allowed{
+    cursor: not-allowed;  
+    cursor: -moz-not-allowed;
+    cursor: -webkit-not-allowed;
 }

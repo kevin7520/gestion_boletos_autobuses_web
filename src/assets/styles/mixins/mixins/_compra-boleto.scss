@@ -35,8 +35,12 @@
 
     /*Clases para página*/
     .div-comprar-boleto{
-        min-height: 320px;
-        max-height: 320px;
+        min-height: 250px;
+    }
+
+    .p-inputtext:enabled:focus{
+        box-shadow: 0 0 0 0.2rem #30a7c24b;
+        border-color: #30a7c2;
     }
 
     .div-seleccionar-asientos{
@@ -87,5 +91,53 @@
     .p-steps .p-steps-item .p-menuitem-link .p-steps-title{
         margin-bottom: 0.9rem;
         margin-top: 0.9rem;
+    }
+
+    .square {
+        width: 60px;
+        height: 31px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .triangle {
+        width: 0;
+        height: 0;
+        border-top: 16px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-left: 15px solid #efbe09;
+        position: absolute;
+        top: 0px;
+        left: 60px; /* Ajusta el valor para posicionar el triángulo correctamente al lado del cuadrado */
+    }
+    
+    .square span {
+        color: #fff;
+    }
+
+    .border-asientos{
+        border: 35px solid blue;
+        border-radius: 35px;
+        border-left: 1px solid #e7e7e7bb;
+        border-right:  1px solid #e7e7e7bb;
+        border-top-color: #e7e7e7bb;
+        border-bottom-color: #e7e7e7bb;
+    }
+
+    .border-info-asientos{
+        border: 1px solid #eae9e7;
+        border-radius: 10px;
+    }
+
+    .border-info-usuario{
+        border: 1px solid #eae9e7;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+    }
+
+    .top-10px{
+        top: 10px;
     }
 }

@@ -9,6 +9,9 @@ import { ConsultarBoletosResponseModel } from 'src/app/Models/Response/consultar
 import { finalize } from 'rxjs/operators';
 import { MenuItem, MessageService } from 'primeng/api';
 import { faCouch } from '@fortawesome/free-solid-svg-icons';
+import { asientosSeleccionado} from 'src/app/Models/Request/boletoSeleccionadoRequest';
+import { BuscarAsientosDataResponse } from 'src/app/Models/DataResponse/consultarAsientoResponse';
+import { BuscarAsientosRequest } from 'src/app/Models/Request/buscarAsientoRequest';
 
 
 
@@ -26,63 +29,24 @@ export class Compra_boletoComponent implements OnInit {
 
 
   /*Variables prueba*/
-    asientos : any[] = [
-      {asiento: 'A1'},
-      {asiento: 'A2'},
-      {asiento: 'A3'},
-      {asiento: 'A4'},
-      {asiento: 'A5'},
-      {asiento: 'A6'},
-      {asiento: 'A7'},
-      {asiento: 'A8'},
-      {asiento: 'A9'},
-      {asiento: 'A10'},
-      {asiento: 'A11'},
-      {asiento: 'A12'},
-      {asiento: 'A13'},
-      {asiento: 'A14'},
-      {asiento: 'A15'},
-      {asiento: 'A16'},
-      {asiento: 'A17'},
-      {asiento: 'A18'},
-      {asiento: 'A19'},
-      {asiento: 'A20'},
-      {asiento: 'B1'},
-      {asiento: 'B2'},
-      {asiento: 'B3'},
-      {asiento: 'B4'},
-      {asiento: 'B5'},
-      {asiento: 'B6'},
-      {asiento: 'B7'},
-      {asiento: 'B8'},
-      {asiento: 'B9'},
-      {asiento: 'B10'},
-      {asiento: 'B11'},
-      {asiento: 'B12'},
-      {asiento: 'B13'},
-      {asiento: 'B14'},
-      {asiento: 'B15'},
-      {asiento: 'B16'},
-      {asiento: 'B17'},
-      {asiento: 'B18'},
-      {asiento: 'B19'},
-      {asiento: 'B20'},
-      {asiento: 'C1'},
-      {asiento: 'C2'},
-      {asiento: 'C3'},
-      {asiento: 'C4'},
-      {asiento: 'C5'},
-    ]
-  /**/
+    asientos : BuscarAsientosDataResponse[] = []
+    ingredient: string='';
+    identificacion: string='';
+    /**/
+  iconoAsientoDisponible: string = '../../../../assets/Images/icons/asiento-libre.svg';
+  iconoAsientoOcupado: string = '../../../../assets/Images/icons/asiento-ocupado.svg';
+  iconoAsientoSeleccionado: string = '../../../../assets/Images/icons/asiento-seleccionado.svg';
+  asientosSeleccionado : asientosSeleccionado[] = [];
   ciudadesPartidaData:CiudadModel[] = [];
   ciudadesLlegadaData:CiudadModel[] = [];
-  ciudadPartida!:CiudadModel;
-  ciudadLlegada!:CiudadModel;
+  ciudadPartida:CiudadModel={id_ciudad : 0, ciudad:'Guayaquil'};
+  ciudadLlegada:CiudadModel={id_ciudad : 0, ciudad:'Quito'};
   boletos : ConsultarBoletosResponse[] = [];
+  boletoSeleccionado! : ConsultarBoletosResponse;
   pasosCompraBoleto!: MenuItem[];
   id : number = 0;
   id_boleto : number = 0;
-  spinner : boolean = false;
+  spinner : boolean = true;
   ngOnInit() {
      this.pasosCompraBoleto = [{label: 'X Selecionar boleto',},{label: 'X Seleccionar asiento',},{label: 'X Información personal',},{label: 'X Metodo Pago',}];
     setTimeout(() => {
@@ -163,8 +127,83 @@ export class Compra_boletoComponent implements OnInit {
   }
 
   seleccionarBoleto(id_boleto : number){
+    this.spinner = true;
     this.id_boleto = id_boleto;
-    this.id = 1;
+    this.boletos.forEach((boleto)=>{
+      if(boleto.id_boleto == id_boleto){
+        this.boletoSeleccionado = lodash.cloneDeep(boleto);
+      }
+    });
+    setTimeout(() => {
+      this.buscarAsientos(id_boleto);
+      this.id = 1;
+    }, 500);
+  }
+
+  buscarAsientos(id_boleto : number){
+    let asientoRequestTemp : BuscarAsientosRequest = {
+      id_boleto: id_boleto,
+    }
+    this._consultasGeneralesService.getAsientos(asientoRequestTemp).pipe(
+        finalize(() => {
+          this.spinner = false;
+        })
+      ).subscribe((respuesta=>{
+      if(respuesta.codeResponse==200){
+        this.asientos = lodash.cloneDeep(respuesta.dataResponse)!;
+      }
+      else{
+        this.messageService.add({key: 'comprar-boleto',severity:'error', detail: respuesta.messageResponse, icon: 'pi-cog'});
+      }
+    }));
+  }
+
+  seleccionarAsiento(id_asiento : number){
+    this.asientos.forEach((asiento,index)=>{
+      if(asiento.id_asiento == id_asiento && asiento.disponible){
+        if(!asiento.seleccionado){
+          this.asientos[index].seleccionado = true;
+          let asientoTemp : asientosSeleccionado = {
+            id_asiento : id_asiento,
+            tipo_Identificacion : 'C',
+            identificacion  : '',
+            nombre_cliente  : '',
+            celular_cliente : '',
+            correo_cliente  : ''
+          }
+          this.asientosSeleccionado.push(asientoTemp);
+        }
+        else{
+          this.asientos[index].seleccionado = false;
+          this.asientosSeleccionado = lodash.remove(this.asientosSeleccionado, (asientoSeleccionado) => asientoSeleccionado.id_asiento != id_asiento);
+        }
+      }
+    });
+  }
+
+  eliminarAsiento(id_asiento : number){
+    this.asientos.forEach((asiento,index)=>{
+      if(asiento.id_asiento == id_asiento){
+        this.asientos[index].seleccionado = false;
+        this.asientosSeleccionado = lodash.remove(this.asientosSeleccionado, (asientoSeleccionado) => asientoSeleccionado.id_asiento != id_asiento);
+      }
+    });
+  }
+
+  encontrarNombreAsiento(id_asiento : number) : string{
+    let asientoTemp : string = '';
+    this.asientos.forEach((asiento)=>{
+      if(asiento.id_asiento == id_asiento){
+        asientoTemp = asiento.asiento;
+      }
+    });
+    return asientoTemp;
+  }
+
+  cantidadAsientoDisponible() : number{
+    let asientosDisponibles : number = 0
+    asientosDisponibles = lodash.size(lodash.filter(this.asientos, (asiento) => asiento.disponible && !asiento.seleccionado));
+    return asientosDisponibles;
   }
 
 }

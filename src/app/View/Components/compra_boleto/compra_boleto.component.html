@@ -1,134 +1,279 @@
-<div class="compra-boleto h-screen flex align-content-center flex-wrap">
-  <div class="pt-8 w-full flex-wrap grid m-0">
-    <div class="col-4">
-      <div class="w-12">
-        <h2 class="w-full text-center text-4xl font-bold mt-5">
-          XComprar Boleto
-        </h2>
-        <div class="mt-5">
-          <p-steps [model]="pasosCompraBoleto" [readonly]="true" [(activeIndex)]="id"></p-steps>
+<div class="compra-boleto">
+  <div class="pt-8 w-full grid m-0">
+    <div class="col-12 bd-color-fcf9f0 flex justify-content-center flex-wrap">
+      <div class="w-max my-4">
+        <div class="inline">
+          <div class="border-circle inline" [ngClass]="{'bg-color-efbe09 text-white': id==0, 'bg-green-500 font-bold': id>0}">
+            <ng-container *ngIf="id > 0; else iconPaso1">
+              <span class="py-1 px-1 text-xs text-white"> <i class="pi-check pi"></i> </span>
+            </ng-container>
+            <ng-template #iconPaso1>
+              <span class="py-1 px-2 text-sm">1</span>
+            </ng-template>
+          </div>
+          <p [ngClass]="{'font-bold': id>0}" class="inline ml-2 text-sm">X Seleccionar boleto</p>
+        </div>
+        <div class="inline ml-3">
+          <div class="border-circle inline" [ngClass]="{'bg-color-efbe09 text-white': id==1, 'bg-green-500 font-bold': id>1, 'bg-black-alpha-40' : id<1}">
+            <ng-container *ngIf="id > 1; else iconPaso2">
+              <span class="py-1 px-1 text-xs text-white"> <i class="pi-check pi"></i> </span>
+            </ng-container>
+            <ng-template #iconPaso2>
+              <span class="py-1 px-2 text-sm text-white">2</span>
+            </ng-template>
+          </div>
+          <p [ngClass]="{'font-bold': id>1}" class="inline ml-2 text-sm">X Seleccionar asientos</p>
+        </div>
+        <div class="inline ml-3">
+          <div class="bg-black-alpha-40 border-circle inline" [ngClass]="{'bg-color-efbe09 text-white': id==2, 'bg-green-500 font-bold': id>2, 'bg-black-alpha-40' : id<2}">
+            <ng-container *ngIf="id > 2; else iconPaso3">
+              <span class="py-1 px-1 text-xs text-white"> <i class="pi-check pi"></i> </span>
+            </ng-container>
+            <ng-template #iconPaso3>
+              <span class="py-1 px-2 text-sm text-white">3</span>
+            </ng-template>
+          </div>
+          <p [ngClass]="{'font-bold': id>2}" class="inline ml-2 text-sm">X Pago</p>
+        </div>
+        <div *ngIf="id==0" class="block w-12 flex justify-content-center flex-wrap mt-5">
+          <div class="w-max">
+            <div class="relative inline-block">
+              <div class="square bg-color-efbe09">
+                <span class="text-sm">Ruta:</span>
+              </div>
+              <div class="triangle"></div>
+            </div>
+            <div class="inline-block ml-5">
+              <span class="text-base font-bold">{{ciudadPartida.ciudad}} <i class="pi-arrow-right pi mx-2"></i> {{ciudadLlegada.ciudad}}</span>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="id==1" class="block w-12 flex justify-content-center flex-wrap mt-4">
+          <div class="w-max">
+            <p class="text-center mb-1 font-bold">Asientos</p>
+            <p class="text-color-tercero font-semibold">Ingrese información por cada pasajero</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-8">
-      <div *ngIf="id==1" class="mt-7 w-12 flex justify-content-center align-content-center flex-wrap">
-        <div class="w-12 grid">
-          <div class="col-6 flex justify-content-center flex-wrap">
-            <p class="w-12 text-center">XX Ciudad Partida</p>
-            <p-dropdown class="w-6 mt-2" 
-                        [options]="ciudadesPartidaData" 
-                        [(ngModel)]="ciudadPartida" 
-                        [editable]="false"
-                        (onChange) ="cambioCiudadPartida($event)"
-                        optionLabel="ciudad">
-            </p-dropdown>
-          </div>
-          <div class="col-6 flex justify-content-center flex-wrap">
-            <p class="w-12 text-center">XX Ciudad Llegada</p>
-            <p-dropdown class="w-6 mt-2" 
-                        [options]="ciudadesLlegadaData" 
-                        [(ngModel)]="ciudadLlegada" 
-                        [editable]="false"
-                        (onChange) ="cambioCiudadDestino($event)"
-                        optionLabel="ciudad">
-            </p-dropdown>
-          </div>
+    <div *ngIf="id==0" class="my-3 w-12 flex justify-content-center align-content-center flex-wrap">
+      <div class="w-12 grid">
+        <div class="col-6 flex justify-content-center flex-wrap">
+          <p class="w-12 text-center">XX Ciudad Partida</p>
+          <p-dropdown class="w-6 mt-2" 
+                      [options]="ciudadesPartidaData" 
+                      [(ngModel)]="ciudadPartida" 
+                      [editable]="false"
+                      (onChange) ="cambioCiudadPartida($event)"
+                      optionLabel="ciudad">
+          </p-dropdown>
         </div>
-        <div class="w-11 mt-3 border-round-2xl border-color-radius div-comprar-boleto">
-          <div class="mt-0 p-2 border-round-2xl border-noround-bottom bg-color-tercero">
-            <p class="text-white">XX Eligir horario</p>
-          </div>
-          <div class="px-3 py-2 grid m-0 w-full">
-            <div class="col-12 py-1 grid m-0 bg-color-azul-bajo">
-              <div class="col-2 py-0">
-                <p class="text-sm w-full text-center font-medium">X Placa Bus</p>
-              </div>
-              <div class="col-3 py-0">
-                <p class="text-sm w-full text-center font-medium">X Fecha de salida</p>
-              </div>
-              <div class="col-3 py-0">
-                <p class="text-sm w-full text-center font-medium">X Hora de salida</p>
-              </div>
-              <div class="col-2 py-0">
-                <p class="text-sm w-full text-center font-medium">X Precio</p>
-              </div>
-              <div class="col-2 py-0">
-                <p class="text-sm w-full text-center font-medium">X Seleccionar</p>
-              </div>
+        <div class="col-6 flex justify-content-center flex-wrap">
+          <p class="w-12 text-center">XX Ciudad Llegada</p>
+          <p-dropdown class="w-6 mt-2" 
+                      [options]="ciudadesLlegadaData" 
+                      [(ngModel)]="ciudadLlegada" 
+                      [editable]="false"
+                      (onChange) ="cambioCiudadDestino($event)"
+                      optionLabel="ciudad">
+          </p-dropdown>
+        </div>
+      </div>
+      <div class="w-11 mt-3 border-round-2xl border-color-radius div-comprar-boleto">
+        <div class="mt-0 p-2 border-round-2xl border-noround-bottom bg-color-tercero">
+          <p class="text-white">XX Eligir horario</p>
+        </div>
+        <div class="px-3 py-2 grid m-0 w-full">
+          <div class="col-12 py-1 grid m-0 bg-color-azul-bajo">
+            <div class="col-2 py-0">
+              <p class="text-sm w-full text-center font-medium">X Placa Bus</p>
             </div>
-            <div class="col-12 py-1 px-0 m-0 grid" *ngFor="let boleto of boletos">
-              <div class="col-2 py-0 flex justify-content-center align-content-center flex-wrap">
-                <p class="text-sm w-max">{{boleto.placa_bus}}</p>
-              </div>
-              <div class="col-3 py-0 flex justify-content-center align-content-center flex-wrap">
-                <p class="text-sm w-max">{{boleto.fecha_salida | date:'yyyy-MM-dd'}}</p>
-              </div>
-              <div class="col-3 py-0 flex justify-content-center align-content-center flex-wrap">
-                <p class="text-sm w-max">{{boleto.hora_salida | hora}}</p>
-              </div>
-              <div class="col-2 py-0 flex justify-content-center align-content-center flex-wrap">
-                <p class="text-sm w-max">{{boleto.precio_boleto | currency}}</p>
-              </div>
-              <div class="col-2 py-0 flex justify-content-center align-content-center flex-wrap">
-                <p-button (onClick)="seleccionarBoleto(boleto.id_boleto)" class="button-primary" label="Y Comprar"></p-button>
-              </div>
-              <div class="table w-full mt-1">
-                <hr>
-              </div>
+            <div class="col-3 py-0">
+              <p class="text-sm w-full text-center font-medium">X Fecha de salida</p>
+            </div>
+            <div class="col-3 py-0">
+              <p class="text-sm w-full text-center font-medium">X Hora de salida</p>
+            </div>
+            <div class="col-2 py-0">
+              <p class="text-sm w-full text-center font-medium">X Precio</p>
+            </div>
+            <div class="col-2 py-0">
+              <p class="text-sm w-full text-center font-medium">X Seleccionar</p>
+            </div>
+          </div>
+          <div class="col-12 py-1 px-0 m-0 grid" *ngFor="let boleto of boletos">
+            <div class="col-2 py-0 flex justify-content-center align-content-center flex-wrap">
+              <p class="text-sm w-max">{{boleto.placa_bus}}</p>
+            </div>
+            <div class="col-3 py-0 flex justify-content-center align-content-center flex-wrap">
+              <p class="text-sm w-max">{{boleto.fecha_salida | date:'yyyy-MM-dd'}}</p>
+            </div>
+            <div class="col-3 py-0 flex justify-content-center align-content-center flex-wrap">
+              <p class="text-sm w-max">{{boleto.hora_salida | hora}}</p>
+            </div>
+            <div class="col-2 py-0 flex justify-content-center align-content-center flex-wrap">
+              <p class="text-sm w-max">{{boleto.precio_boleto | currency}}</p>
+            </div>
+            <div class="col-2 py-0 flex justify-content-center align-content-center flex-wrap">
+              <p-button (onClick)="seleccionarBoleto(boleto.id_boleto)" class="button-primary" label="Y Comprar"></p-button>
+            </div>
+            <div class="table w-full mt-1">
+              <hr>
             </div>
           </div>
         </div>
       </div>
-      <div *ngIf="id==0" class="w-12 flex justify-content-center flex-wrap">
-        <div class="grid mt-0 w-5">
-          <div class="w-4">
-            <img src="../../../../assets/Images/icons/asiento-libre.svg" alt="asiento libre">
-            <img src="../../../../assets/Images/icons/asiento-ocupado.svg" alt="asiento ocupado">
-          </div>
-          <div class="w-8 grid div-seleccionar-asientos">
-            <div class="width-40 grid m-0 p-0">
-              <ng-container  *ngFor="let asientosBus of asientos">
-                <div class="col-6" *ngIf="asientosBus.asiento.charAt(0) == 'A'">
-                  <div class="w-full flex justify-content-center flex-wrap">
-                    <fa-icon [icon]="icon_bus_asiento"></fa-icon>
-                  </div>
-                  <p class="w-full text-center">{{asientosBus.asiento}}</p>
-                </div>
-              </ng-container>        
-            </div>
-            <div class="width-20">
-            </div>
-            <div class="width-40 grid m-0 p-0">
-                <ng-container  *ngFor="let asientosBus of asientos">
-                  <div class="col-6" *ngIf="asientosBus.asiento.charAt(0) == 'B'">
-                    <div class="w-full flex justify-content-center flex-wrap">
-                      <fa-icon [icon]="icon_bus_asiento"></fa-icon>
-                    </div>
-                    <p class="w-full text-center">{{asientosBus.asiento}}</p>
-                  </div>
-                </ng-container>        
-            </div>
-            <div class="col-12 grid m-0 p-0">
-              <ng-container  *ngFor="let asientosBus of asientos">
-                <div class="width-20" *ngIf="asientosBus.asiento.charAt(0) == 'C'">
-                  <div class="w-full flex justify-content-center flex-wrap">
-                    <fa-icon [icon]="icon_bus_asiento"></fa-icon>
-                  </div>
-                  <p class="w-full text-center">{{asientosBus.asiento}}</p>
-                </div>
-              </ng-container>        
-            </div>
-            <!-- <div class="inline-block col-2 p-0 flex justify-content-center flex-wrap" *ngFor="let asientosBus of asientos">
+    </div>
+    <div *ngIf="id==1" class="mt-3 mb-8 w-12 flex justify-content-center align-content-center flex-wrap">
+        <div class="w-12 grid m-0">
+          <div class="col-4">
+            <div class="w-12 flex justify-content-center flex-wrap">
               <div class="w-max">
-                <fa-icon [icon]="icon_bus"></fa-icon>
-                <p>{{asientosBus.asiento}}</p>
+                <div class="inline-block">
+                  <div class="flex justify-content-center flex-wrap">
+                    <img width="30px" src="../../../../assets/Images/icons/asiento-libre.svg" alt="asiento libre">
+                    <p class="mt-2 ml-2 mr-5 text-color-30a7c2">Asiento libre</p>
+                  </div>
+                </div>
+                <div class="inline-block">
+                  <div class="flex justify-content-center flex-wrap">
+                    <img width="30px" src="../../../../assets/Images/icons/asiento-ocupado.svg" alt="asiento ocupado">
+                    <p class="mt-2 ml-2 text-color-999">Asiento ocupado</p>
+                  </div>
+                </div>
               </div>
-            </div> -->
+            </div>
+            <div class="w-12 flex justify-content-center flex-wrap mt-4">
+              <div class="w-9 border-asientos">
+                  <div class="mt-4 mx-2 flex justify-content-between flex-wrap">
+                    <div>
+                      <img width="40px" src="../../../../assets/Images/icons/steering-wheel.svg" alt="volante">
+                    </div>
+                    <div>
+                      <img width="40px" src="../../../../assets/Images/icons/door.svg" alt="volante">
+                    </div>
+                  </div>
+                  <div class="my-4  grid m-0">
+                    <div class="width-40 grid m-0 p-0">
+                      <ng-container  *ngFor="let asientosBus of asientos">
+                        <div class="col-6" *ngIf="asientosBus.asiento.charAt(0) == 'A'">
+                          <div class="w-full flex justify-content-center flex-wrap relative" [ngClass]="{'cursor-not-allowed': !asientosBus.disponible,'cursor-pointer': asientosBus.disponible}" >
+                            <p (click)="seleccionarAsiento(asientosBus.id_asiento)" [ngClass]="{'text-color-999': !asientosBus.disponible && !asientosBus.seleccionado,'text-color-30a7c2': asientosBus.disponible && !asientosBus.seleccionado, 'text-white': asientosBus.seleccionado}" class="absolute top-10px text-sm">{{asientosBus.asiento}}</p>
+                            <img (click)="seleccionarAsiento(asientosBus.id_asiento)" [src]="(asientosBus.seleccionado) ? iconoAsientoSeleccionado : (asientosBus.disponible) ? iconoAsientoDisponible : iconoAsientoOcupado"  width="40px" alt="asiento libre">
+                          </div>
+                        </div>
+                      </ng-container>        
+                    </div>
+                    <div class="width-20 flex justify-content-center flex-wrap">
+                      <div class="w-8 bd-color-fcf9f0">
+                      </div>
+                    </div>
+                    <div class="width-40 grid m-0 p-0">
+                      <ng-container  *ngFor="let asientosBus of asientos">
+                        <div class="col-6" *ngIf="asientosBus.asiento.charAt(0) == 'B'">
+                          <div class="w-full flex justify-content-center flex-wrap relative" [ngClass]="{'cursor-not-allowed': !asientosBus.disponible,'cursor-pointer': asientosBus.disponible}" >
+                            <p (click)="seleccionarAsiento(asientosBus.id_asiento)" [ngClass]="{'text-color-999': !asientosBus.disponible && !asientosBus.seleccionado,'text-color-30a7c2': asientosBus.disponible && !asientosBus.seleccionado, 'text-white': asientosBus.seleccionado}" class="absolute top-10px text-sm">{{asientosBus.asiento}}</p>
+                            <img (click)="seleccionarAsiento(asientosBus.id_asiento)" [src]="(asientosBus.seleccionado) ? iconoAsientoSeleccionado : (asientosBus.disponible) ? iconoAsientoDisponible : iconoAsientoOcupado"  width="40px" alt="asiento libre">
+                          </div>
+                        </div>
+                      </ng-container>        
+                    </div>
+                    <div class="col-12 grid m-0 p-0">
+                      <ng-container  *ngFor="let asientosBus of asientos">
+                        <div class="width-20" *ngIf="asientosBus.asiento.charAt(0) == 'C'">
+                          <div class="w-full flex justify-content-center flex-wrap relative" [ngClass]="{'cursor-not-allowed': !asientosBus.disponible,'cursor-pointer': asientosBus.disponible}" >
+                            <p (click)="seleccionarAsiento(asientosBus.id_asiento)" [ngClass]="{'text-color-999': !asientosBus.disponible && !asientosBus.seleccionado,'text-color-30a7c2': asientosBus.disponible && !asientosBus.seleccionado, 'text-white': asientosBus.seleccionado}" class="absolute top-10px text-sm">{{asientosBus.asiento}}</p>
+                            <img (click)="seleccionarAsiento(asientosBus.id_asiento)" [src]="(asientosBus.seleccionado) ? iconoAsientoSeleccionado : (asientosBus.disponible) ? iconoAsientoDisponible : iconoAsientoOcupado"  width="40px" alt="asiento libre">
+                          </div>
+                        </div>
+                      </ng-container>        
+                    </div>
+                  </div>
+              </div>
+            </div>
           </div>
+          <div class="col-8">
+            <div class="w-max">
+              <div class="relative inline-block">
+                <div class="square bg-color-efbe09">
+                  <span class="text-sm">IDA</span>
+                </div>
+                <div class="triangle"></div>
+              </div>
+              <div class="inline-block ml-5">
+                <span class="font-normal text-sm">Fecha: <span class="font-bold">{{boletoSeleccionado.fecha_salida | date:'yyyy-MM-dd'}}</span> Hora: <span class="font-bold">{{boletoSeleccionado.hora_salida | hora}}</span></span>
+              </div>
+            </div>
+            <div class="w-12 flex justify-content-center flex-wrap mt-4">
+                <div class="w-11 bg-color-fafaf9 p-4 border-info-asientos grid m-0">
+                    <p class="text-sm col-3 text-center"><span class="font-bold">Ciudad partida:</span> {{ciudadPartida.ciudad}}</p>
+                    <p class="text-sm col-3 text-center"><span class="font-bold">Ciudad llegada:</span> {{ciudadLlegada.ciudad}}</p>
+                    <p class="text-sm col-3 text-center"><span class="font-bold">Precio Unitario:</span> {{boletoSeleccionado.precio_boleto}}</p>
+                    <p class="text-sm col-3 text-center"><span class="font-bold">Asientos Disponibles:</span> {{cantidadAsientoDisponible()}}</p>
+                </div>
+            </div>
+            <div class="w-12 flex justify-content-center flex-wrap mt-4" *ngFor="let infoBoleto of asientosSeleccionado">
+              <div class="w-11 bg-color-fafaf9 border-info-asientos grid m-0">
+                <div class="m-0 p-0 w-full bg-tr bg-color-transparent border-info-usuario p-3 grid">
+                  <div class="col p-0 flex align-content-center flex-wrap">
+                      <p class="text-lg font-bold text-color-30a7c2">Asiento: {{encontrarNombreAsiento(infoBoleto.id_asiento)}}</p>
+                  </div>
+                  <div class="w-max">
+                      <i (click)="eliminarAsiento(infoBoleto.id_asiento)" class="pi-times-circle pi text-2xl text-red-700 cursor-pointer"></i>
+                  </div>
+                </div>
+                <div class="w-12 grid m-0">
+                  <div class="col-6 mt-3">
+                    <div class="flex flex-wrap gap-3">
+                      <div class="flex align-items-center">
+                          <p-radioButton name="pizza" value="Cheese" [(ngModel)]="ingredient" inputId="ingredient1"></p-radioButton>
+                          <label for="ingredient1" [ngClass]="{'font-bold': ingredient=='Cheese'}" class="ml-2 text">Cédula</label>
+                      </div>
+                      
+                      <div class="flex align-items-center">
+                          <p-radioButton name="pizza" value="Mushroom" [(ngModel)]="ingredient" inputId="ingredient2"></p-radioButton>
+                          <label for="ingredient2" [ngClass]="{'font-bold': ingredient=='Mushroom'}" class="ml-2 text-sm">Ruc</label>
+                      </div>
+                      
+                      <div class="flex align-items-center">
+                          <p-radioButton name="pizza" value="Pepper" [(ngModel)]="ingredient" inputId="ingredient3"></p-radioButton>
+                          <label for="ingredient3" [ngClass]="{'font-bold': ingredient=='Pepper'}" class="ml-2 text-sm">Passporte</label>
+                      </div>
+                    </div>
+                    <div class="mt-3 w-full">
+                      <input class="w-full" type="text" pInputText [(ngModel)]="identificacion" />
+                    </div>
+                  </div>
+                  <div class="col-6 mt-3">
+                    <label for="ingredient3" class="font-bold ml-2 text-sm mb-1">XNombre</label>
+                    <div class="mt-3 w-full">
+                      <input class="w-full mt-1" type="text" pInputText [(ngModel)]="identificacion" />
+                    </div>
+                  </div>
+                  <div class="col-6 mt-3">
+                    <label for="ingredient3" class="font-bold ml-2 text-sm mb-1">XCelular</label>
+                    <div class="mt-3 w-full">
+                      <input class="w-full mt-1" type="text" pInputText [(ngModel)]="identificacion" />
+                    </div>
+                  </div>
+                  <div class="col-6 mt-3">
+                    <label for="ingredient3" class="font-bold ml-2 text-sm mb-1">Correo</label>
+                    <div class="mt-3 w-full">
+                      <input [disabled]="true" class="w-full mt-1" type="text" pInputText [(ngModel)]="identificacion" />
+                    </div>
+                  </div>
+                </div>
+               </div>
+            </div>
+          </div>
+        </div>  
+        <div class="w-12 flex justify-content-center flex-wrap mt-4">
+            <div class="w-max">
+              <p-button class="button-segundary" label="Regresar"></p-button> &nbsp;&nbsp;
+              <p-button class="button-primary" label="Continuar" (click)="id+1"></p-button>
+            </div>
         </div>
-      </div>
     </div>
-   
   </div>
   <div class="loading-overlay" *ngIf="spinner">
     <div class="loading-container">
