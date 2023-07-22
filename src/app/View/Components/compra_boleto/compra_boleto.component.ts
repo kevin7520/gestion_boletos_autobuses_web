@@ -12,6 +12,8 @@ import { faCouch } from '@fortawesome/free-solid-svg-icons';
 import { asientosSeleccionado} from 'src/app/Models/Request/boletoSeleccionadoRequest';
 import { BuscarAsientosDataResponse } from 'src/app/Models/DataResponse/consultarAsientoResponse';
 import { BuscarAsientosRequest } from 'src/app/Models/Request/buscarAsientoRequest';
+import { AsientosAccionesRequest } from 'src/app/Models/Request/asientosAccionesRequest';
+import { GestionTablasGeneralesService } from 'src/app/Services/gestion-tablas-generales.service';
 
 
 
@@ -21,7 +23,11 @@ import { BuscarAsientosRequest } from 'src/app/Models/Request/buscarAsientoReque
 })
 export class Compra_boletoComponent implements OnInit {
 
-  constructor(private _consultasGeneralesService : ConsultaGeneralesService, private messageService: MessageService) { }
+  constructor(
+      private _consultasGeneralesService : ConsultaGeneralesService, 
+      private _gestionTablasGeneralesService : GestionTablasGeneralesService,
+      private messageService: MessageService) 
+  { }
 
   /* ICONOS */
   icon_bus_asiento = faCouch;
@@ -31,6 +37,7 @@ export class Compra_boletoComponent implements OnInit {
   /*Variables prueba*/
     asientos : BuscarAsientosDataResponse[] = []
     ingredient: string='';
+    tipoIdentificacion : string = 'C';
     identificacion: string='';
     /**/
   iconoAsientoDisponible: string = '../../../../assets/Images/icons/asiento-libre.svg';
@@ -162,20 +169,42 @@ export class Compra_boletoComponent implements OnInit {
     this.asientos.forEach((asiento,index)=>{
       if(asiento.id_asiento == id_asiento && asiento.disponible){
         if(!asiento.seleccionado){
-          this.asientos[index].seleccionado = true;
-          let asientoTemp : asientosSeleccionado = {
-            id_asiento : id_asiento,
-            tipo_Identificacion : 'C',
-            identificacion  : '',
-            nombre_cliente  : '',
-            celular_cliente : '',
-            correo_cliente  : ''
+          let id_asientoTemp :  AsientosAccionesRequest = {
+            id_asiento : id_asiento
           }
-          this.asientosSeleccionado.push(asientoTemp);
+          this._gestionTablasGeneralesService.seleccionarAsiento(id_asientoTemp).subscribe((respuesta)=>{
+            if(respuesta.codeResponse == 200){
+              this.asientos[index].seleccionado = true;
+              let asientoTemp : asientosSeleccionado = {
+                id_asiento : id_asiento,
+                tipo_Identificacion : 'C',
+                identificacion  : '',
+                nombre_cliente  : '',
+                celular_cliente : '',
+                correo_cliente  : ''
+              }
+              this.asientosSeleccionado.push(asientoTemp);
+              this.messageService.add({key: 'comprar-boleto',severity:'success', detail: respuesta.messageResponse, icon: 'pi-cog'});
+            }
+            else{
+              this.messageService.add({key: 'comprar-boleto',severity:'error', detail: respuesta.messageResponse, icon: 'pi-cog'});
+            }
+          });
         }
         else{
-          this.asientos[index].seleccionado = false;
-          this.asientosSeleccionado = lodash.remove(this.asientosSeleccionado, (asientoSeleccionado) => asientoSeleccionado.id_asiento != id_asiento);
+          let id_asientoTemp :  AsientosAccionesRequest = {
+            id_asiento : id_asiento
+          }
+          this._gestionTablasGeneralesService.recuperarAsiento(id_asientoTemp).subscribe((respuesta)=>{
+            if(respuesta.codeResponse == 200){
+              this.asientos[index].seleccionado = false;
+              this.asientosSeleccionado = lodash.remove(this.asientosSeleccionado, (asientoSeleccionado) => asientoSeleccionado.id_asiento != id_asiento);    
+              this.messageService.add({key: 'comprar-boleto',severity:'success', detail: respuesta.messageResponse, icon: 'pi-cog'});
+            }
+            else{
+              this.messageService.add({key: 'comprar-boleto',severity:'error', detail: respuesta.messageResponse, icon: 'pi-cog'});
+            }
+          });
         }
       }
     });
@@ -204,6 +233,27 @@ export class Compra_boletoComponent implements OnInit {
     let asientosDisponibles : number = 0
     asientosDisponibles = lodash.size(lodash.filter(this.asientos, (asiento) => asiento.disponible && !asiento.seleccionado));
     return asientosDisponibles;
+  }
+
+  guardarInformacionBoleto(){
+    console.log(this.asientosSeleccionado);
+  }
+
+  blockAlphanumericKeys(event: KeyboardEvent) {
+    const keyCode = event.keyCode || event.which;
+
+    // Obtener el carácter correspondiente al código de tecla
+    const key = String.fromCharCode(keyCode);
+
+    // Permitir la tecla de eliminar (backspace)
+    if (keyCode === 8) {
+      return;
+    }
+
+    // Validar si el carácter no es un número
+    if (isNaN(parseInt(key))) {
+      event.preventDefault();
+    }
   }
 
 }

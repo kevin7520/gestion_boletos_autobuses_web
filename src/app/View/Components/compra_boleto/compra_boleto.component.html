@@ -206,13 +206,13 @@
             </div>
             <div class="w-12 flex justify-content-center flex-wrap mt-4">
                 <div class="w-11 bg-color-fafaf9 p-4 border-info-asientos grid m-0">
-                    <p class="text-sm col-3 text-center"><span class="font-bold">Ciudad partida:</span> {{ciudadPartida.ciudad}}</p>
-                    <p class="text-sm col-3 text-center"><span class="font-bold">Ciudad llegada:</span> {{ciudadLlegada.ciudad}}</p>
-                    <p class="text-sm col-3 text-center"><span class="font-bold">Precio Unitario:</span> {{boletoSeleccionado.precio_boleto}}</p>
-                    <p class="text-sm col-3 text-center"><span class="font-bold">Asientos Disponibles:</span> {{cantidadAsientoDisponible()}}</p>
+                    <p class="text-sm col-3 text-center"><span class="font-bold">X Ciudad partida:</span> {{ciudadPartida.ciudad}}</p>
+                    <p class="text-sm col-3 text-center"><span class="font-bold">X Ciudad llegada:</span> {{ciudadLlegada.ciudad}}</p>
+                    <p class="text-sm col-3 text-center"><span class="font-bold">X Precio Unitario:</span> {{boletoSeleccionado.precio_boleto}}</p>
+                    <p class="text-sm col-3 text-center"><span class="font-bold">X Asientos Disponibles:</span> {{cantidadAsientoDisponible()}}</p>
                 </div>
             </div>
-            <div class="w-12 flex justify-content-center flex-wrap mt-4" *ngFor="let infoBoleto of asientosSeleccionado">
+            <div class="w-12 flex justify-content-center flex-wrap mt-4" *ngFor="let infoBoleto of asientosSeleccionado; let indice = index">
               <div class="w-11 bg-color-fafaf9 border-info-asientos grid m-0">
                 <div class="m-0 p-0 w-full bg-tr bg-color-transparent border-info-usuario p-3 grid">
                   <div class="col p-0 flex align-content-center flex-wrap">
@@ -226,40 +226,40 @@
                   <div class="col-6 mt-3">
                     <div class="flex flex-wrap gap-3">
                       <div class="flex align-items-center">
-                          <p-radioButton name="pizza" value="Cheese" [(ngModel)]="ingredient" inputId="ingredient1"></p-radioButton>
-                          <label for="ingredient1" [ngClass]="{'font-bold': ingredient=='Cheese'}" class="ml-2 text">Cédula</label>
+                          <p-radioButton name="cedula" value="C" [(ngModel)]="asientosSeleccionado[indice].tipo_Identificacion" inputId="tipoIdentificacionC"></p-radioButton>
+                          <label for="tipoIdentificacionC" [ngClass]="{'font-bold': ingredient=='C'}" class="ml-2 text">Cédula</label>
                       </div>
                       
                       <div class="flex align-items-center">
-                          <p-radioButton name="pizza" value="Mushroom" [(ngModel)]="ingredient" inputId="ingredient2"></p-radioButton>
-                          <label for="ingredient2" [ngClass]="{'font-bold': ingredient=='Mushroom'}" class="ml-2 text-sm">Ruc</label>
+                          <p-radioButton name="ruc" value="R" [(ngModel)]="asientosSeleccionado[indice].tipo_Identificacion" inputId="tipoIdentificacionR"></p-radioButton>
+                          <label for="tipoIdentificacionR" [ngClass]="{'font-bold': ingredient=='R'}" class="ml-2 text-sm">Ruc</label>
                       </div>
                       
                       <div class="flex align-items-center">
-                          <p-radioButton name="pizza" value="Pepper" [(ngModel)]="ingredient" inputId="ingredient3"></p-radioButton>
-                          <label for="ingredient3" [ngClass]="{'font-bold': ingredient=='Pepper'}" class="ml-2 text-sm">Passporte</label>
+                          <p-radioButton name="pasaporte" value="P" [(ngModel)]="asientosSeleccionado[indice].tipo_Identificacion" inputId="tipoIdentificacionP"></p-radioButton>
+                          <label for="tipoIdentificacionP" [ngClass]="{'font-bold': ingredient=='P'}" class="ml-2 text-sm">Passporte</label>
                       </div>
                     </div>
                     <div class="mt-3 w-full">
-                      <input class="w-full" type="text" pInputText [(ngModel)]="identificacion" />
+                      <input class="w-full" type="text" pInputText [(ngModel)]="asientosSeleccionado[indice].identificacion" />
                     </div>
                   </div>
                   <div class="col-6 mt-3">
                     <label for="ingredient3" class="font-bold ml-2 text-sm mb-1">XNombre</label>
                     <div class="mt-3 w-full">
-                      <input class="w-full mt-1" type="text" pInputText [(ngModel)]="identificacion" />
+                      <input class="w-full mt-1" type="text" pInputText [(ngModel)]="asientosSeleccionado[indice].nombre_cliente" />
                     </div>
                   </div>
                   <div class="col-6 mt-3">
-                    <label for="ingredient3" class="font-bold ml-2 text-sm mb-1">XCelular</label>
+                    <label for="celular"  class="font-bold ml-2 text-sm mb-1">XCelular</label>
                     <div class="mt-3 w-full">
-                      <input class="w-full mt-1" type="text" pInputText [(ngModel)]="identificacion" />
+                      <input class="w-full mt-1" pInputText pKeyFilter="int" maxlength="10" (keydown)="blockAlphanumericKeys($event)" [(ngModel)]="asientosSeleccionado[indice].celular_cliente" />
                     </div>
                   </div>
                   <div class="col-6 mt-3">
-                    <label for="ingredient3" class="font-bold ml-2 text-sm mb-1">Correo</label>
+                    <label for="ingredient3" class="font-bold ml-2 text-sm mb-1">X Correo</label>
                     <div class="mt-3 w-full">
-                      <input [disabled]="true" class="w-full mt-1" type="text" pInputText [(ngModel)]="identificacion" />
+                      <input [disabled]="false" class="w-full mt-1" type="text" pInputText [(ngModel)]="asientosSeleccionado[indice].correo_cliente" />
                     </div>
                   </div>
                 </div>
@@ -269,8 +269,8 @@
         </div>  
         <div class="w-12 flex justify-content-center flex-wrap mt-4">
             <div class="w-max">
-              <p-button class="button-segundary" label="Regresar"></p-button> &nbsp;&nbsp;
-              <p-button class="button-primary" label="Continuar" (click)="id+1"></p-button>
+              <p-button class="button-segundary" label="X Regresar"></p-button> &nbsp;&nbsp;
+              <p-button class="button-primary" label="X Continuar" (click)="guardarInformacionBoleto()"></p-button>
             </div>
         </div>
     </div>
