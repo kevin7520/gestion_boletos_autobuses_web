@@ -1,5 +1,4 @@
-export interface asientosSeleccionado {
-    id_asiento : number;
+export interface ClienteBoletoResponse {
     tipo_Identificacion : string;
     identificacion : string;
     nombre_cliente : string;

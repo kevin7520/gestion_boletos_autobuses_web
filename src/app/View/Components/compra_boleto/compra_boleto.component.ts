@@ -9,7 +9,7 @@ import { ConsultarBoletosResponseModel } from 'src/app/Models/Response/consultar
 import { finalize } from 'rxjs/operators';
 import { MenuItem, MessageService } from 'primeng/api';
 import { faCouch } from '@fortawesome/free-solid-svg-icons';
-import { asientosSeleccionado} from 'src/app/Models/Request/boletoSeleccionadoRequest';
+import { asientosSeleccionado} from 'src/app/Models/Request/CompraBoleto/boletoSeleccionadoRequest';
 import { BuscarAsientosDataResponse } from 'src/app/Models/DataResponse/consultarAsientoResponse';
 import { BuscarAsientosRequest } from 'src/app/Models/Request/buscarAsientoRequest';
 import { AsientosAccionesRequest } from 'src/app/Models/Request/asientosAccionesRequest';
@@ -39,6 +39,7 @@ export class Compra_boletoComponent implements OnInit {
     ingredient: string='';
     tipoIdentificacion : string = 'C';
     identificacion: string='';
+    value : string = '';
     /**/
   iconoAsientoDisponible: string = '../../../../assets/Images/icons/asiento-libre.svg';
   iconoAsientoOcupado: string = '../../../../assets/Images/icons/asiento-ocupado.svg';
@@ -177,11 +178,13 @@ export class Compra_boletoComponent implements OnInit {
               this.asientos[index].seleccionado = true;
               let asientoTemp : asientosSeleccionado = {
                 id_asiento : id_asiento,
-                tipo_Identificacion : 'C',
-                identificacion  : '',
-                nombre_cliente  : '',
-                celular_cliente : '',
-                correo_cliente  : ''
+                cliente : { 
+                  tipo_Identificacion : 'C',
+                  identificacion  : '',
+                  nombre_cliente  : '',
+                  celular_cliente : '',
+                  correo_cliente  : ''
+                }
               }
               this.asientosSeleccionado.push(asientoTemp);
               this.messageService.add({key: 'comprar-boleto',severity:'success', detail: respuesta.messageResponse, icon: 'pi-cog'});

@@ -23,6 +23,7 @@ import { MenuModule } from 'primeng/menu';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { StepsModule } from 'primeng/steps';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputMaskModule } from 'primeng/inputmask';
 
 
 /* Componentes creados */
@@ -85,7 +86,8 @@ export function createTranslateLoader(http: HttpClient) {
     ProgressSpinnerModule,
     StepsModule,
     FontAwesomeModule,
-    RadioButtonModule
+    RadioButtonModule,
+    InputMaskModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
