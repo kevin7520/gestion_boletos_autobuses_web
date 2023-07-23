@@ -14,6 +14,8 @@ import { BuscarAsientosDataResponse } from 'src/app/Models/DataResponse/consulta
 import { BuscarAsientosRequest } from 'src/app/Models/Request/buscarAsientoRequest';
 import { AsientosAccionesRequest } from 'src/app/Models/Request/asientosAccionesRequest';
 import { GestionTablasGeneralesService } from 'src/app/Services/gestion-tablas-generales.service';
+import { CompraBoletoFinalRequest } from 'src/app/Models/Request/CompraBoleto/compraBoletoFinalRequest';
+import { Router } from '@angular/router';
 
 
 
@@ -24,6 +26,7 @@ import { GestionTablasGeneralesService } from 'src/app/Services/gestion-tablas-g
 export class Compra_boletoComponent implements OnInit {
 
   constructor(
+      private router : Router,
       private _consultasGeneralesService : ConsultaGeneralesService, 
       private _gestionTablasGeneralesService : GestionTablasGeneralesService,
       private messageService: MessageService) 
@@ -45,6 +48,7 @@ export class Compra_boletoComponent implements OnInit {
   iconoAsientoOcupado: string = '../../../../assets/Images/icons/asiento-ocupado.svg';
   iconoAsientoSeleccionado: string = '../../../../assets/Images/icons/asiento-seleccionado.svg';
   asientosSeleccionado : asientosSeleccionado[] = [];
+
   ciudadesPartidaData:CiudadModel[] = [];
   ciudadesLlegadaData:CiudadModel[] = [];
   ciudadPartida:CiudadModel={id_ciudad : 0, ciudad:'Guayaquil'};
@@ -55,6 +59,13 @@ export class Compra_boletoComponent implements OnInit {
   id : number = 0;
   id_boleto : number = 0;
   spinner : boolean = true;
+
+  compraBoleto : CompraBoletoFinalRequest = {
+    id_boleto : String(this.id_boleto),
+    formaPago : null,
+    ClienteBoletoResponse : null,
+    asientosSeleccionado : this.asientosSeleccionado
+  }
   ngOnInit() {
      this.pasosCompraBoleto = [{label: 'X Selecionar boleto',},{label: 'X Seleccionar asiento',},{label: 'X Información personal',},{label: 'X Metodo Pago',}];
     setTimeout(() => {
@@ -137,6 +148,7 @@ export class Compra_boletoComponent implements OnInit {
   seleccionarBoleto(id_boleto : number){
     this.spinner = true;
     this.id_boleto = id_boleto;
+    this.compraBoleto.id_boleto = String(id_boleto);
     this.boletos.forEach((boleto)=>{
       if(boleto.id_boleto == id_boleto){
         this.boletoSeleccionado = lodash.cloneDeep(boleto);
@@ -239,24 +251,50 @@ export class Compra_boletoComponent implements OnInit {
   }
 
   guardarInformacionBoleto(){
+    this.compraBoleto.ClienteBoletoResponse = {
+      nombre_cliente : '',
+      tipo_Identificacion : 'C',
+      identificacion : '',
+      celular_cliente : '',
+      correo_cliente : ''
+    }
+    this.compraBoleto.formaPago = {
+      tipoFormaPago : 'C',
+      nombre : '',
+      numero_tarjeta : '',
+      fecha_expiracion : '',
+      codigo_tarjeta : ''
+    }
+    this.id = 2;
     console.log(this.asientosSeleccionado);
   }
+  pagarBoleto(){
+    console.log(this.compraBoleto);
+    this.messageService.add({key: 'comprar-boleto',severity:'success', detail: 'Compra exitosa', icon: 'pi-cog'});
+    this.spinner = true;
+    setTimeout(() => {
+      this.router.navigateByUrl('');
+    }, 1000);
+  }
 
-  blockAlphanumericKeys(event: KeyboardEvent) {
-    const keyCode = event.keyCode || event.which;
+  bloquearLetras(event: KeyboardEvent) {
+    const pattern = /[0-9]/;
 
-    // Obtener el carácter correspondiente al código de tecla
-    const key = String.fromCharCode(keyCode);
-
-    // Permitir la tecla de eliminar (backspace)
-    if (keyCode === 8) {
-      return;
-    }
-
-    // Validar si el carácter no es un número
-    if (isNaN(parseInt(key))) {
-      event.preventDefault();
+    const inputChar = String.fromCharCode(event.charCode);
+    if (!pattern.test(inputChar)) {
+        // invalid character, prevent input
+        event.preventDefault();
     }
   }
+
+  bloquearNumeros(event: KeyboardEvent) { 
+    const pattern = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/;
+    const inputChar = String.fromCharCode(event.charCode);
+    if (!pattern.test(inputChar)) {
+        // invalid character, prevent input
+        event.preventDefault();
+    }
+  }
+  
 
 }

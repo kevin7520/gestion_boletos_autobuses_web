@@ -54,6 +54,12 @@
             <p class="text-color-tercero font-semibold">Ingrese información por cada pasajero</p>
           </div>
         </div>
+        <div *ngIf="id==2" class="block w-12 flex justify-content-center flex-wrap mt-4">
+          <div class="w-max">
+            <p class="text-center mb-1 font-bold">Forma de pago</p>
+            <p class="text-color-tercero font-semibold">Ingrese información de su forma de pago</p>
+          </div>
+        </div>
       </div>
     </div>
     <div *ngIf="id==0" class="my-3 w-12 flex justify-content-center align-content-center flex-wrap">
@@ -124,7 +130,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="id==2" class="mt-3 mb-8 w-12 flex justify-content-center align-content-center flex-wrap">
+    <div *ngIf="id==1" class="mt-3 mb-8 w-12 flex justify-content-center align-content-center flex-wrap">
         <div class="w-12 grid m-0">
           <div class="col-4">
             <div class="w-12 flex justify-content-center flex-wrap">
@@ -227,39 +233,41 @@
                     <div class="flex flex-wrap gap-3">
                       <div class="flex align-items-center">
                           <p-radioButton name="cedula" value="C" [(ngModel)]="asientosSeleccionado[indice].cliente.tipo_Identificacion" inputId="tipoIdentificacionC"></p-radioButton>
-                          <label for="tipoIdentificacionC" [ngClass]="{'font-bold': ingredient=='C'}" class="ml-2 text">Cédula</label>
+                          <label for="tipoIdentificacionC" [ngClass]="{'font-bold ': asientosSeleccionado[indice].cliente.tipo_Identificacion=='C'}" class="ml-2 text-sm">Cédula</label>
                       </div>
                       
                       <div class="flex align-items-center">
                           <p-radioButton name="ruc" value="R" [(ngModel)]="asientosSeleccionado[indice].cliente.tipo_Identificacion" inputId="tipoIdentificacionR"></p-radioButton>
-                          <label for="tipoIdentificacionR" [ngClass]="{'font-bold': ingredient=='R'}" class="ml-2 text-sm">Ruc</label>
+                          <label for="tipoIdentificacionR" [ngClass]="{'font-bold': asientosSeleccionado[indice].cliente.tipo_Identificacion=='R'}" class="ml-2 text-sm">Ruc</label>
                       </div>
                       
                       <div class="flex align-items-center">
                           <p-radioButton name="pasaporte" value="P" [(ngModel)]="asientosSeleccionado[indice].cliente.tipo_Identificacion" inputId="tipoIdentificacionP"></p-radioButton>
-                          <label for="tipoIdentificacionP" [ngClass]="{'font-bold': ingredient=='P'}" class="ml-2 text-sm">Passporte</label>
+                          <label for="tipoIdentificacionP" [ngClass]="{'font-bold': asientosSeleccionado[indice].cliente.tipo_Identificacion=='P'}" class="ml-2 text-sm">Passporte</label>
                       </div>
                     </div>
-                    <div class="mt-3 w-full">
-                      <input class="w-full" type="text" pInputText [(ngModel)]="asientosSeleccionado[indice].cliente.identificacion" />
+                    <div class="mt-1 w-full">
+                      <input *ngIf="asientosSeleccionado[indice].cliente.tipo_Identificacion=='C'" minlength="10" maxlength="10" (keypress)="bloquearLetras($event)" class="w-full" type="text" pInputText [(ngModel)]="asientosSeleccionado[indice].cliente.identificacion" />
+                      <input *ngIf="asientosSeleccionado[indice].cliente.tipo_Identificacion=='R'" minlength="13" maxlength="13" (keypress)="bloquearLetras($event)" class="w-full" type="text" pInputText [(ngModel)]="asientosSeleccionado[indice].cliente.identificacion" />
+                      <input *ngIf="asientosSeleccionado[indice].cliente.tipo_Identificacion=='P'" maxlength="20" class="w-full" type="text" pInputText [(ngModel)]="asientosSeleccionado[indice].cliente.identificacion" />
                     </div>
                   </div>
                   <div class="col-6 mt-3">
                     <label for="ingredient3" class="font-bold ml-2 text-sm mb-1">XNombre</label>
-                    <div class="mt-3 w-full">
-                      <input class="w-full mt-1" type="text" pInputText [(ngModel)]="asientosSeleccionado[indice].cliente.nombre_cliente" />
+                    <div class="mt-1 w-full">
+                      <input class="w-full mt-1" type="text" pInputText [(ngModel)]="asientosSeleccionado[indice].cliente.nombre_cliente" (keypress)="bloquearNumeros($event)" />
                     </div>
                   </div>
-                  <div class="col-6 mt-3">
+                  <div class="col-6 mt-2">
                     <label for="celular"  class="font-bold ml-2 text-sm mb-1">XCelular</label>
-                    <div class="mt-3 w-full">
-                      <input class="w-full mt-1" pInputText pKeyFilter="int" maxlength="10" (keydown)="blockAlphanumericKeys($event)" [(ngModel)]="asientosSeleccionado[indice].cliente.celular_cliente" />
+                    <div class="mt-1 w-full">
+                      <input class="w-full mt-1" pInputText pKeyFilter="int" maxlength="10" (keypress)="bloquearLetras($event)" [(ngModel)]="asientosSeleccionado[indice].cliente.celular_cliente" />
                     </div>
                   </div>
-                  <div class="col-6 mt-3">
+                  <div class="col-6 mt-2">
                     <label for="ingredient3" class="font-bold ml-2 text-sm mb-1">X Correo</label>
-                    <div class="mt-3 w-full">
-                      <input [disabled]="false" class="w-full mt-1" type="text" pInputText [(ngModel)]="asientosSeleccionado[indice].cliente.correo_cliente" />
+                    <div class="mt-1 w-full">
+                      <input [disabled]="false" class="w-full mt-1" type="email" pInputText [(ngModel)]="asientosSeleccionado[indice].cliente.correo_cliente" />
                     </div>
                   </div>
                 </div>
@@ -274,7 +282,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="id==1" class="mt-3 mb-8 w-12 flex justify-content-center align-content-center flex-wrap">
+    <div *ngIf="id==2" class="mt-3 mb-8 w-12 flex justify-content-center align-content-center flex-wrap">
       <div class="w-11 grid m-0">
         <div class="col-4">
           <div class="w-12 mt-2 px-2">
@@ -292,9 +300,9 @@
             <p class="text-sm col-12 text-left"><span class="font-bold">X Ciudad partida:</span> {{ciudadPartida.ciudad}}</p>
             <p class="text-sm col-12 text-left"><span class="font-bold">X Ciudad llegada:</span> {{ciudadLlegada.ciudad}}</p>
             <p class="text-sm col-12 text-left"><span class="font-bold">X Precio Unitario:</span> {{boletoSeleccionado.precio_boleto}}</p>
-            <p class="text-sm col-12 text-left"><span class="font-bold">X Cantidad Asientos:</span> {{cantidadAsientoDisponible()}}</p>
-            <p class="text-sm col-12 text-left"><span class="font-bold">X Precio final sin Iva:</span> {{cantidadAsientoDisponible()}}</p>
-            <p class="text-sm col-12 text-left"><span class="font-bold">X Precio final con Iva:</span> {{cantidadAsientoDisponible()}}</p>
+            <p class="text-sm col-12 text-left"><span class="font-bold">X Cantidad Asientos:</span> {{compraBoleto.asientosSeleccionado.length}}</p>
+            <p class="text-sm col-12 text-left"><span class="font-bold">X Precio final sin Iva:</span> {{boletoSeleccionado.precio_boleto*compraBoleto.asientosSeleccionado.length}}</p>
+            <p class="text-sm col-12 text-left"><span class="font-bold">X Precio final con Iva:</span> {{(boletoSeleccionado.precio_boleto*compraBoleto.asientosSeleccionado.length)*0.12+(boletoSeleccionado.precio_boleto*compraBoleto.asientosSeleccionado.length)}}</p>
           </div>
         </div>
         <div class="col-8">
@@ -309,26 +317,43 @@
                   <div class="w-full grid m-0 mt-2">
                     <div class="col-6">
                       <label class="font-bold ml-1 text-sm">X Nombre</label>
-                      <div class="w-full">
-                        <input class="w-full mt-1" placeholder="X Nombre del titular" type="text" pInputText />
+                      <div class="w-full mt-1">
+                        <input class="w-full mt-1" type="text" pInputText  (keypress)="bloquearNumeros($event)" [(ngModel)]="compraBoleto.ClienteBoletoResponse!.nombre_cliente"/>
                       </div>
                     </div>
                     <div class="col-6">
-                      <label class="font-bold ml-1 text-sm">X Identificación</label>
+                      <div class="flex flex-wrap gap-3">
+                        <div class="flex align-items-center">
+                            <p-radioButton name="cedula" value="C" [(ngModel)]="compraBoleto.ClienteBoletoResponse!.tipo_Identificacion" inputId="tipoIdentificacionC"></p-radioButton>
+                            <label for="tipoIdentificacionC" [ngClass]="{'font-bold ': compraBoleto.ClienteBoletoResponse!.tipo_Identificacion=='C'}" class="ml-2 text-sm">Cédula</label>
+                        </div>
+                        
+                        <div class="flex align-items-center">
+                            <p-radioButton name="ruc" value="R" [(ngModel)]="compraBoleto.ClienteBoletoResponse!.tipo_Identificacion" inputId="tipoIdentificacionR"></p-radioButton>
+                            <label for="tipoIdentificacionR" [ngClass]="{'font-bold': compraBoleto.ClienteBoletoResponse!.tipo_Identificacion=='R'}" class="ml-2 text-sm">Ruc</label>
+                        </div>
+                        
+                        <div class="flex align-items-center">
+                            <p-radioButton name="pasaporte" value="P" [(ngModel)]="compraBoleto.ClienteBoletoResponse!.tipo_Identificacion" inputId="tipoIdentificacionP"></p-radioButton>
+                            <label for="tipoIdentificacionP" [ngClass]="{'font-bold': compraBoleto.ClienteBoletoResponse!.tipo_Identificacion=='P'}" class="ml-2 text-sm">Passporte</label>
+                        </div>
+                      </div>
                       <div class="w-full">
-                        <input class="w-full mt-1" placeholder="X Nombre del titular" type="text" pInputText />
+                        <input *ngIf="compraBoleto.ClienteBoletoResponse!.tipo_Identificacion=='C'" maxlength="10" (keypress)="bloquearLetras($event)" class="w-full mt-1" type="tel" pInputText [(ngModel)]="compraBoleto.ClienteBoletoResponse!.identificacion" />
+                        <input *ngIf="compraBoleto.ClienteBoletoResponse!.tipo_Identificacion=='R'" maxlength="13" (keypress)="bloquearLetras($event)" class="w-full mt-1" type="tel" pInputText [(ngModel)]="compraBoleto.ClienteBoletoResponse!.identificacion" />
+                        <input *ngIf="compraBoleto.ClienteBoletoResponse!.tipo_Identificacion=='P'" maxlength="20" (keypress)="bloquearLetras($event)" class="w-full mt-1" type="text" pInputText [(ngModel)]="compraBoleto.ClienteBoletoResponse!.identificacion" />
                       </div>
                     </div>
                     <div class="col-6">
                       <label class="font-bold ml-1 text-sm">X Celular</label>
                       <div class="w-full">
-                        <input class="w-full mt-1" placeholder="X Nombre del titular" type="text" pInputText />
+                        <input class="w-full mt-1" type="tel" maxlength="10" pInputText (keypress)="bloquearLetras($event)" [(ngModel)]="compraBoleto.ClienteBoletoResponse!.celular_cliente"/>
                       </div>
                     </div>
                     <div class="col-6">
                       <label class="font-bold ml-1 text-sm">X Correo</label>
                       <div class="w-full">
-                        <input class="w-full mt-1" placeholder="X Nombre del titular" type="text" pInputText />
+                        <input class="w-full mt-1" type="text" pInputText [(ngModel)]="compraBoleto.ClienteBoletoResponse!.correo_cliente"/>
                       </div>
                     </div>
                   </div>
@@ -342,37 +367,37 @@
                 <div class="w-full px-2">
                   <div class="flex flex-wrap gap-3 ml-1 mt-4">
                     <div class="flex align-items-center">
-                        <p-radioButton name="cedula" value="C" inputId="tipoIdentificacionC"></p-radioButton>
-                        <label for="tipoIdentificacionC" [ngClass]="{'font-bold': ingredient=='C'}" class="ml-2 text">X Tarjeta de crédito</label>
+                        <p-radioButton name="tarjetaCredito" value="C" inputId="formaPagoC" [(ngModel)]="compraBoleto.formaPago!.tipoFormaPago"></p-radioButton>
+                        <label for="formaPagoC" [ngClass]="{'font-bold': compraBoleto.formaPago!.tipoFormaPago=='C'}" class="ml-2 text-sm">X Tarjeta de crédito</label>
                     </div>
                     <div class="flex align-items-center">
-                        <p-radioButton name="ruc" value="R" inputId="tipoIdentificacionR"></p-radioButton>
-                        <label for="tipoIdentificacionR" [ngClass]="{'font-bold': ingredient=='R'}" class="ml-2 text-sm">X Tarjeta de debito</label>
+                        <p-radioButton name="tarjetaDebito" value="D" inputId="formaPagoD" [(ngModel)]="compraBoleto.formaPago!.tipoFormaPago"></p-radioButton>
+                        <label for="formaPagoD" [ngClass]="{'font-bold': compraBoleto.formaPago!.tipoFormaPago=='D'}" class="ml-2 text-sm">X Tarjeta de debito</label>
                     </div>
                   </div>
                 <div class="w-full grid m-0 mt-2">
                     <div class="col-6">
                       <label class="font-bold ml-1 text-sm">XNombre</label>
                       <div class="w-full">
-                        <input class="w-full mt-1" placeholder="X Nombre del titular" type="text" pInputText />
+                        <input class="w-full mt-1" type="text" pInputText (keypress)="bloquearNumeros($event)" [(ngModel)]="compraBoleto.formaPago!.nombre"/>
                       </div>
                     </div>
                     <div class="col-6">
                       <label for="numeroTarjeta" class="ml-1 text-sm font-bold">X Número de la tarjeta</label>
                       <div class="w-full mt-1">
-                        <p-inputMask mask="9999-9999-9999-9999" [(ngModel)]="value" placeholder="X Ingresa el número de tu tarjeta"></p-inputMask>
+                        <p-inputMask mask="9999-9999-9999-9999" [(ngModel)]="compraBoleto.formaPago!.numero_tarjeta" ></p-inputMask>
                       </div>
                     </div>
                     <div class="col-6">
                       <label for="fechaTarjeta" class="ml-1 text-sm font-bold">X Fecha de expiración</label>
                       <div class="w-full mt-1">
-                        <p-inputMask mask="99/9999" [(ngModel)]="value" placeholder="X Ingresa el número de tu tarjeta"></p-inputMask>
+                        <p-inputMask mask="99/9999" [(ngModel)]="compraBoleto.formaPago!.fecha_expiracion"></p-inputMask>
                       </div>
                     </div>
                     <div class="col-6">
                       <label for="codigoTarjeta" class="ml-1 text-sm font-bold">X Cvc</label>
                       <div class="w-full mt-1">
-                        <p-inputMask mask="999?9" [(ngModel)]="value" placeholder="X Ingresa el código de tu tarjeta"></p-inputMask>
+                        <p-inputMask mask="999?9" [(ngModel)]="compraBoleto.formaPago!.codigo_tarjeta"></p-inputMask>
                       </div>
                     </div>
                 </div>
@@ -384,7 +409,7 @@
       <div class="w-12 flex justify-content-center flex-wrap mt-4">
         <div class="w-max">
           <p-button class="button-segundary" label="X Regresar"></p-button> &nbsp;&nbsp;
-          <p-button class="button-primary" label="X Continuar" (click)="guardarInformacionBoleto()"></p-button>
+          <p-button class="button-primary" label="X Pagar" (click)="pagarBoleto()"></p-button>
         </div>
       </div>
     </div>
