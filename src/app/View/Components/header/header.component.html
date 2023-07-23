@@ -34,29 +34,16 @@
         <div class="w-max py-0 flex align-content-center flex-wrap">
           <img class="h-4rem" src="../../../../assets/Images/icons/logo_cte.webp" alt="logo">
         </div>
-        <div class="col p-0 px-4 mt-2">
-          <ul class="lista-elemnt flex list-none text-sm my-3 pl-0">
-            <li class="flex-1 flex justify-content-center flex-wrap"> 
-              <p class="cursor-pointer select-none" (click)="cambioSection('inicio')">Comprar boleto</p> 
-            </li>
-            <li class="flex-1 flex justify-content-center flex-wrap">
-              <p class="cursor-pointer select-none" (click)="cambioSection('quines_somos')">Editar Perfil</p> 
-            </li>
-            <li class="flex-1 flex justify-content-center flex-wrap">
-              <p class="cursor-pointer select-none" (click)="cambioSection('horarios')">Historial Compras</p>
-            </li>
-            <li class="flex-1 flex justify-content-center flex-wrap">
-              <p class="cursor-pointer select-none" (click)="cambioSection('venta_boletos')">Rutas preferidas</p>
-            </li>
-            <li class="flex-1 flex justify-content-center flex-wrap">
-              <p class="cursor-pointer select-none" (click)="abrirModal()">Cerrar Sesión</p>
-            </li>
-          </ul>
+        <div class="col p-0 px-4 mt-2 flex align-content-center justify-content-end flex-wrap">
+          <div class="mr-4 text-white">
+            <p class="text-center text-lg font-bold line-height-3">Kevin Arévalo Saldaña</p>
+            <p class="text-center text-base font-bold">Ultimo inicio sesión: 18:00:00</p>
+          </div>
         </div>
       </div>
     </ng-template>
     
-    <div class="w-1 p-2 flex justify-content-center align-content-center flex-wrap relative top-0">
+    <div [ngClass]="{'mr-3':id_Rol!=null}" class="w-1 p-2 flex justify-content-center align-content-center flex-wrap relative top-0">
       <p-dropdown class="pb-2" 
                   [options]="idioma_array" 
                   [(ngModel)]="selectedIdioma" 

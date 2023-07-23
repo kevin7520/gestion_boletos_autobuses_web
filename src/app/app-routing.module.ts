@@ -7,7 +7,9 @@ import { ClienteComponent } from './View/Pages/cliente/cliente.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'comprar-boleto-home', component: Compra_boletoComponent },
-  { path: 'cliente', component: ClienteComponent}
+  { path: 'cliente', component: ClienteComponent, 
+    children: [{path: '', component: Compra_boletoComponent}]
+  }
 ];
 
 @NgModule({

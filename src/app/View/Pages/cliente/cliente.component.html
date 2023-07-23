@@ -1,8 +1,8 @@
-<div class="pt-6 mt-6 grid h-screen ">
-  <div class="col-2 p-0">
-    <p-menu [model]="items" class="inline-block"></p-menu>
+<div class="pt-6 mt-6 grid p-1 m-0">
+  <div class="w-max">
+    <p-menu [model]="items" class="inline-block w-full"></p-menu>
   </div>
-  <div class="col-10">
-    hola
+  <div class="col">
+    <router-outlet></router-outlet>
   </div>
 </div>

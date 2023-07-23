@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem} from 'primeng/api';
 
 @Component({
@@ -7,7 +8,9 @@ import { MenuItem} from 'primeng/api';
 })
 export class ClienteComponent implements OnInit {
   items!: MenuItem[];
-  constructor() { }
+  constructor(
+    private router : Router
+  ) { }
 
   ngOnInit() {
     this.llenarItems();
@@ -16,40 +19,45 @@ export class ClienteComponent implements OnInit {
   llenarItems(){
     this.items = [
       {
-        label: 'Options',
+        label: 'X Opciones',
+        icon: 'pi pi-cog',
         items: [
             {
-                label: 'Update',
+                label: 'X Comprar boletos',
                 icon: 'pi pi-refresh',
                 command: () => {
                     console.log("Actualizo");
                 }
             },
             {
-                label: 'Delete',
-                icon: 'pi pi-times',
+                label: 'X Historial de compras',
+                icon: 'pi pi-shopping-cart',
                 command: () => {
                   console.log("Elimino");
                 }
-            }
-        ]
-      },
-      {
-        label: 'Navigate',
-        items: [
-            {
-                label: 'Angular',
-                icon: 'pi pi-external-link',
-                url: 'http://angular.io'
             },
             {
-                label: 'Router',
-                icon: 'pi pi-upload',
-                routerLink: '/fileupload'
+              label: 'X Editar perfil',
+              icon: 'pi pi-user-edit',
+              command: () => {
+                console.log("Elimino");
+              }
+            },
+            {
+              label: 'X Cerrar Sesión',
+              icon: 'pi pi-sign-out',
+              command: () => {
+                console.log("Elimino");
+                this.cerrarSesion();
+              }
             }
         ]
       }
     ];
   }
 
+  cerrarSesion(){
+    localStorage.clear();
+    this.router.navigateByUrl('');
+  }
 }
