@@ -1,0 +1,69 @@
+<div class="pt-6 mt-5 editar-perfil">
+  <div class="w-full">
+    <div class="w-12 border-round-md border-300 border-solid border-1">
+      <p class="text-xl text-center mt-4 text-color-30a7c2">Editar Perfil ({{cliente.rol}})</p>
+      <div class="w-12 flex justify-content-center flex-wrap mt-4">
+        <div class="w-9 grid m-0">
+          <div class="col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">X Nombres</label>
+            <div class="mt-1 w-full">
+              <input [disabled]="true" class="p-inputtext w-full mt-1" type="text" pInputText [(ngModel)]="cliente.nombre"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">X Apellidos</label>
+            <div class="mt-1 w-full">
+              <input [disabled]="true" class="p-inputtext w-full mt-1" type="text" pInputText [(ngModel)]="cliente.apellido"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">X Identificación</label>
+            <div class="mt-1 w-full">
+              <input [disabled]="true" class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.identificacion"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">X Fecha Nacimiento</label>
+            <div class="mt-1 w-full">
+              <input [disabled]="true" class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.fecha_nacimiento"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">X Correo</label>
+            <div class="mt-1 w-full">
+              <input class="w-full mt-1 p-inputtext" type="email" pInputText [(ngModel)]="cliente.correo"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">X Celular</label>
+            <div class="mt-1 w-full">
+              <input class="w-full mt-1 p-inputtext" type="tel" pInputText [(ngModel)]="cliente.telefono"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">X Dirrección</label>
+            <div class="mt-1 w-full">
+              <input class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.direccion"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">X Nueva contraseña</label>
+            <div class="mt-1 w-full">
+              <input class="w-full mt-1 p-inputtext" type="password" pInputText [(ngModel)]="cliente.contrasena"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">X Contraseña actual</label>
+            <div class="mt-1 w-full">
+              <input class="w-full mt-1 p-inputtext" type="password" pInputText [(ngModel)]="contrasena_perfil"/>
+            </div>
+          </div>
+          <div class="col-12 mt-4 mb-4 flex justify-content-center flex-wrap">
+            <p-button [disabled]="habilitarBotonGuardar()" (click)="editarCliente()" class="button-primary" label="X Guardar"></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

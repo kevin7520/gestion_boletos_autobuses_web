@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { CiudadResponseModel } from '../Models/Response/ciudades-respuesta.model';
-import { ConsultarBoletosResponse } from '../Models/DataResponse/consultarBoletosResponse.model';
 import { ConsultarBoletosRequest } from '../Models/Request/consultarBoletosRequest.model';
 import { ConsultarBoletosResponseModel } from '../Models/Response/consultar-boletos-respuesta.model';
 import { BuscarAsientosRequest } from '../Models/Request/buscarAsientoRequest';

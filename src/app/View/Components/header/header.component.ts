@@ -1,8 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { ClientePerfilRequest } from 'src/app/Models/Request/Cliente_Perfil/ClientePerfilRequest';
 import { CredencialesModel } from 'src/app/Models/Request/credenciales.model';
 import { LoginRespuestaModel } from 'src/app/Models/Response/login-respuesta.model';
+import { ClienteService } from 'src/app/Services/cliente.service';
 import { IniciarSesionService } from 'src/app/Services/iniciar-sesion.service';
 
 interface Idioma {
@@ -22,11 +24,14 @@ export class HeaderComponent implements OnInit {
   constructor( 
     private _router: Router, 
     private _iniciarSesionService : IniciarSesionService,
-    private _messageService: MessageService
+    private _messageService: MessageService,
+    private clienteService : ClienteService
   ) { }
 
   idioma_array!: Idioma[];
   id_Rol: number | null = null;
+  usuario : string = '';
+  fechaLogin : string = '';
 
   selectedIdioma: Idioma = { name: 'Español', code: 'es' };
 
@@ -64,7 +69,9 @@ export class HeaderComponent implements OnInit {
         localStorage.setItem('idPersona', String(respuesta.dataResponse.idPersona));
         localStorage.setItem('token', String(respuesta.dataResponse.token));
         this.varificarCliente();
+        this.inicioSeccion = false;
         this._router.navigate(['/cliente']);
+        this.RegistrarEntrada();
       }
       else{
         this._messageService.add({key: 'login',severity:'error', detail: 'X Correo o contraseña incorrecta', icon: 'pi-cog'})
@@ -75,7 +82,18 @@ export class HeaderComponent implements OnInit {
   varificarCliente(){
     if (localStorage.getItem('idPersona') !== null) {
       this.id_Rol = 1;
+      this.RegistrarEntrada();
     }
+  }
+
+  RegistrarEntrada(){
+    const id : ClientePerfilRequest = {
+      id_persona : Number(localStorage.getItem('idPersona'))
+    }
+    this.clienteService.registroLoginCliente(id!).subscribe(datosCliente=>{
+      this.usuario = datosCliente.dataResponse.usuario;
+      this.fechaLogin = datosCliente.dataResponse.fecha;
+    });
   }
 
   cerrarSesion(){

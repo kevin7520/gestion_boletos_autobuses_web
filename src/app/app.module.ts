@@ -16,7 +16,6 @@ import { FooterComponent } from './View/Components/footer/footer.component';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { DividerModule } from 'primeng/divider';
 import { MenuModule } from 'primeng/menu';
@@ -42,6 +41,8 @@ import { HoraPipe } from './View/Pipes/hora.pipe';
 
 /* Font Awesome */
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { InputTextModule } from 'primeng/inputtext';
+import { Editar_PerfilComponent } from './View/Pages/cliente/Editar_Perfil/Editar_Perfil.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -58,6 +59,7 @@ export function createTranslateLoader(http: HttpClient) {
     GB_buttonComponent,
     Compra_boletoComponent,
     ClienteComponent,
+    Editar_PerfilComponent,
     HoraPipe
   ],
   imports: [
@@ -79,7 +81,6 @@ export function createTranslateLoader(http: HttpClient) {
     DropdownModule,
     FormsModule,
     ReactiveFormsModule,
-    InputTextModule,
     ToastModule,
     DividerModule,
     MenuModule,
@@ -87,7 +88,8 @@ export function createTranslateLoader(http: HttpClient) {
     StepsModule,
     FontAwesomeModule,
     RadioButtonModule,
-    InputMaskModule
+    InputMaskModule,
+    InputTextModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

@@ -40,7 +40,7 @@ export class ClienteComponent implements OnInit {
               label: 'X Editar perfil',
               icon: 'pi pi-user-edit',
               command: () => {
-                console.log("Elimino");
+                this.router.navigateByUrl('/cliente/editar-perfil');
               }
             },
             {
@@ -58,6 +58,9 @@ export class ClienteComponent implements OnInit {
 
   cerrarSesion(){
     localStorage.clear();
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('').then(() => {
+      // Después de que se complete la navegación, recargar la página completa
+      window.location.reload();
+    });
   }
 }

@@ -1,0 +1,10 @@
+@mixin editar-perfil {
+    .p-inputtext{
+        padding: 7px;
+        font-size: 14px;
+    }
+    .p-inputtext:enabled:focus{
+        box-shadow: 0 0 0 0.2rem #30a7c24b;
+        border-color: #30a7c2;
+    }
+}
