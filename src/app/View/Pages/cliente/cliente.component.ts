@@ -13,10 +13,23 @@ export class ClienteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.llenarItems();
+    switch(localStorage.getItem('rol')){
+      case "4": 
+        this.llenarItemsCliente();
+        break;
+      case "3":
+        this.llenarItemsChofer();
+        break;
+      case "2":
+        this.llenarItemsVendedor();
+        break;
+      case "1":
+        this.llenarItemsAdministrador();
+        break;
+    }
   }
 
-  llenarItems(){
+  llenarItemsCliente(){
     this.items = [
       {
         label: 'X Opciones',
@@ -26,18 +39,72 @@ export class ClienteComponent implements OnInit {
                 label: 'X Comprar boletos',
                 icon: 'pi pi-refresh',
                 command: () => {
-                    console.log("Actualizo");
+                  this.router.navigateByUrl('/usuario');
                 }
             },
             {
                 label: 'X Historial de compras',
                 icon: 'pi pi-shopping-cart',
                 command: () => {
-                  console.log("Elimino");
+                  this.router.navigateByUrl('/usuario/editar-perfil');
                 }
             },
             {
               label: 'X Editar perfil',
+              icon: 'pi pi-user-edit',
+              command: () => {
+                this.router.navigateByUrl('/usuario/editar-perfil');
+              }
+            },
+            {
+              label: 'X Cerrar Sesión',
+              icon: 'pi pi-sign-out',
+              command: () => {
+                this.cerrarSesion();
+              }
+            }
+        ]
+      }
+    ];
+  }
+
+  llenarItemsChofer(){
+
+  }
+
+  llenarItemsVendedor(){
+
+  }
+
+  llenarItemsAdministrador(){
+    this.items = [
+      {
+        label: 'X Opciones',
+        icon: 'pi pi-cog',
+        items: [
+            {
+                label: 'X Crear usuario',
+                icon: 'pi pi-refresh',
+                command: () => {
+                    console.log("Actualizo");
+                }
+            },
+            {
+                label: 'X Eliminar usuario',
+                icon: 'pi pi-shopping-cart',
+                command: () => {
+                  this.router.navigateByUrl('/administrador/eliminar-usuario');
+                }
+            },
+            {
+              label: 'X Editar usuario',
+              icon: 'pi pi-user-edit',
+              command: () => {
+                this.router.navigateByUrl('/usuario/editar-perfil');
+              }
+            },
+            {
+              label: 'X Crear ruta',
               icon: 'pi pi-user-edit',
               command: () => {
                 this.router.navigateByUrl('/cliente/editar-perfil');
@@ -47,7 +114,6 @@ export class ClienteComponent implements OnInit {
               label: 'X Cerrar Sesión',
               icon: 'pi pi-sign-out',
               command: () => {
-                console.log("Elimino");
                 this.cerrarSesion();
               }
             }

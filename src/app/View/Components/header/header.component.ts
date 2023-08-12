@@ -68,9 +68,23 @@ export class HeaderComponent implements OnInit {
         this._messageService.add({key: 'login', severity:'success', detail: 'X Inicio de sessión exitosa', icon: 'pi-cog'})
         localStorage.setItem('idPersona', String(respuesta.dataResponse.idPersona));
         localStorage.setItem('token', String(respuesta.dataResponse.token));
+        localStorage.setItem('rol', String(respuesta.dataResponse.idRol));
         this.varificarCliente();
         this.inicioSeccion = false;
-        this._router.navigate(['/cliente']);
+        switch(String(respuesta.dataResponse.idRol)){
+          case "4": 
+            this._router.navigate(['/usuario']);
+            break;
+          case "3":
+            this._router.navigate(['/chofer']);
+            break;
+          case "2":
+            this._router.navigate(['/vedndedor']);
+            break;
+          case "1":
+            this._router.navigate(['/administrador']);
+            break;
+        }
         this.RegistrarEntrada();
       }
       else{
@@ -81,7 +95,7 @@ export class HeaderComponent implements OnInit {
 
   varificarCliente(){
     if (localStorage.getItem('idPersona') !== null) {
-      this.id_Rol = 1;
+      this.id_Rol = Number(localStorage.getItem('rol'));
       this.RegistrarEntrada();
     }
   }

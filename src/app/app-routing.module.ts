@@ -4,14 +4,21 @@ import { HomeComponent } from './View/Pages/home/home.component';
 import { Compra_boletoComponent } from './View/Components/compra_boleto/compra_boleto.component';
 import { ClienteComponent } from './View/Pages/cliente/cliente.component';
 import { Editar_PerfilComponent } from './View/Pages/cliente/Editar_Perfil/Editar_Perfil.component';
+import { EliminarUsuariosComponent } from './View/Pages/Administrador/eliminar-usuarios/eliminar-usuarios.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'comprar-boleto-home', component: Compra_boletoComponent },
-  { path: 'cliente', component: ClienteComponent, 
+  { path: 'usuario', component: ClienteComponent, 
     children: [
       { path: '', component: Compra_boletoComponent },
       { path: 'editar-perfil', component: Editar_PerfilComponent}
+    ],
+  },
+  { path: 'administrador', component: ClienteComponent, 
+    children: [
+      { path: '', component: Editar_PerfilComponent },
+      { path: 'eliminar-usuario', component: EliminarUsuariosComponent}
     ],
   }
 ];

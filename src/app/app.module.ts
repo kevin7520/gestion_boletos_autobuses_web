@@ -23,6 +23,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { StepsModule } from 'primeng/steps';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputMaskModule } from 'primeng/inputmask';
+import { TableModule } from 'primeng/table';
 
 
 /* Componentes creados */
@@ -43,6 +44,7 @@ import { HoraPipe } from './View/Pipes/hora.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InputTextModule } from 'primeng/inputtext';
 import { Editar_PerfilComponent } from './View/Pages/cliente/Editar_Perfil/Editar_Perfil.component';
+import { EliminarUsuariosComponent } from './View/Pages/Administrador/eliminar-usuarios/eliminar-usuarios.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -60,6 +62,7 @@ export function createTranslateLoader(http: HttpClient) {
     Compra_boletoComponent,
     ClienteComponent,
     Editar_PerfilComponent,
+    EliminarUsuariosComponent,
     HoraPipe
   ],
   imports: [
@@ -89,7 +92,8 @@ export function createTranslateLoader(http: HttpClient) {
     FontAwesomeModule,
     RadioButtonModule,
     InputMaskModule,
-    InputTextModule
+    InputTextModule,
+    TableModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

@@ -1,0 +1,27 @@
+<div class="pt-6 mt-5 mb-8">
+  <div class="w-full">
+    <div class="col-12 border-round-md border-300 border-solid border-1">
+      <p-table [styleClass]="sizeTable.class" [value]="productos" [tableStyle]="{ 'min-width': '50rem' }">
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="code" style="width:20%">Identificación <p-sortIcon field="code"></p-sortIcon></th>
+              <th pSortableColumn="name" style="width:30%">Nombres <p-sortIcon field="name"></p-sortIcon></th>
+              <th pSortableColumn="category" style="width:30%">Apellidos <p-sortIcon field="category"></p-sortIcon></th>
+              <th pSortableColumn="quantity" style="width:10%">Rol <p-sortIcon field="quantity"></p-sortIcon></th>
+              <th pSortableColumn="price" style="width:10%"></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+              <tr>
+                  <td>{{ product.code }}</td>
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.category }}</td>
+                  <td>{{ product.quantity }}</td>
+                  <td>Elliminar</td>
+              </tr>
+          </ng-template>
+      </p-table>
+        
+    </div>
+  </div>
+</div>
