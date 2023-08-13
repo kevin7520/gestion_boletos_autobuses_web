@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteResponse } from 'src/app/Models/DataResponse/Administrador/usuarios';
+import { ConsultaGeneralesService } from 'src/app/Services/consulta-generales.service';
+import { GestionTablasGeneralesService } from 'src/app/Services/gestion-tablas-generales.service';
 
 @Component({
   selector: 'app-eliminar-usuarios',
@@ -7,49 +10,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EliminarUsuariosComponent implements OnInit {
 
-  constructor() { }
+  constructor( private consultasService : ConsultaGeneralesService, private gestionService : GestionTablasGeneralesService) { }
 
   sizeTable = { name: 'Small', class: 'p-datatable-sm' };
     
-  productos: any[] = [
-    {
-      id: '1000',
-      code: 'f230fh0g3',
-      name: 'Bamboo Watch',
-      description: 'Product Description',
-      image: 'bamboo-watch.jpg',
-      price: 65,
-      category: 'Accessories',
-      quantity: 24,
-      inventoryStatus: 'INSTOCK',
-      rating: 5
-  },
-  {
-    id: '1001',
-    code: 'f230fh0g3',
-    name: 'Bamboo Watch',
-    description: 'Product Description',
-    image: 'bamboo-watch.jpg',
-    price: 65,
-    category: 'Body',
-    quantity: 24,
-    inventoryStatus: 'INSTOCK',
-    rating: 5
-},
-{
-  id: '1000',
-  code: 'f230fh0g301234567890',
-  name: 'Aamboo Watch',
-  description: 'Product Description',
-  image: 'bamboo-watch.jpg',
-  price: 65,
-  category: 'Accessories',
-  quantity: 24,
-  inventoryStatus: 'INSTOCK',
-  rating: 5
-}
-  ]
+  usuarios: ClienteResponse [] = []
   ngOnInit() {
+    this.obtenerUsuarios();
+  }
+
+  obtenerUsuarios(){
+    this.consultasService.getUsuario({id_persona : Number(localStorage.getItem('idPersona'))}).subscribe(respuesta => {
+      if(respuesta.codeResponse != 200){
+        alert(respuesta.messageResponse);
+      }
+      else{
+        this.usuarios = respuesta.dataResponse!;
+      }
+    })
+  }
+
+  eliminarUsuario(id_persona : number){
+    this.gestionService.desabilitarUsuario({id_Administrador: Number(localStorage.getItem('idPersona')), id_persona: id_persona}).subscribe(respuesta => {
+      alert(respuesta.messageResponse);
+      if(respuesta.codeResponse == 200){
+        this.obtenerUsuarios();
+      }
+    });
   }
 
 }

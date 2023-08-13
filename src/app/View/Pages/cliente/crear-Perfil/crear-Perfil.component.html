@@ -1,31 +1,43 @@
-<div class="pt-6 mt-5 mb-8 editar-perfil">
+<div class="pt-6 mt-5 mb-8">
   <div class="w-full">
-    <div class="w-12 border-round-md border-300 border-solid border-1">
-      <p class="text-xl text-center mt-4 text-color-30a7c2">Editar Perfil ({{cliente.rol}})</p>
+    <div class="col-12 border-round-md border-300 border-solid border-1">
+      <h3 class="w-full text-center text-color-30a7c2 ">Creación de usuario</h3>
       <div class="w-12 flex justify-content-center flex-wrap mt-4">
         <div class="w-9 grid m-0">
           <div class="col-6">
             <label  class="font-bold ml-2 text-sm mb-1">X Nombres</label>
             <div class="mt-1 w-full">
-              <input [disabled]="true" class="p-inputtext w-full mt-1" type="text" pInputText [(ngModel)]="cliente.nombre"/>
+              <input  class="p-inputtext w-full mt-1" type="text" pInputText [(ngModel)]="cliente.nombres"/>
             </div>
           </div>
           <div class="col-6">
             <label  class="font-bold ml-2 text-sm mb-1">X Apellidos</label>
             <div class="mt-1 w-full">
-              <input [disabled]="true" class="p-inputtext w-full mt-1" type="text" pInputText [(ngModel)]="cliente.apellido"/>
+              <input  class="p-inputtext w-full mt-1" type="text" pInputText [(ngModel)]="cliente.apellidos"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">X Tipo identificación</label>
+            <div class="mt-1 w-full">
+              <p-dropdown class="w-full" [options]="tipoIdentificacion" [(ngModel)]="cliente.tipoIdentificacion" optionLabel="name"></p-dropdown>            
             </div>
           </div>
           <div class="col-6">
             <label  class="font-bold ml-2 text-sm mb-1">X Identificación</label>
             <div class="mt-1 w-full">
-              <input [disabled]="true" class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.identificacion"/>
+              <input  class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.identificacion"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">X Tipo de rol</label>
+            <div class="mt-1 w-full">
+              <p-dropdown class="w-full" [options]="tipoRol" [(ngModel)]="cliente.tipoRol" optionLabel="name"></p-dropdown> 
             </div>
           </div>
           <div class="col-6">
             <label  class="font-bold ml-2 text-sm mb-1">X Fecha Nacimiento</label>
             <div class="mt-1 w-full">
-              <input [disabled]="true" class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.fecha_nacimiento"/>
+              <p-calendar class="w-full" [(ngModel)]="cliente.fechaNacimiento" dateFormat="dd/mm/yy"></p-calendar>
             </div>
           </div>
           <div class="col-6">
@@ -43,28 +55,19 @@
           <div class="col-6">
             <label  class="font-bold ml-2 text-sm mb-1">X Dirrección</label>
             <div class="mt-1 w-full">
-              <input class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.direccion"/>
+              <input class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.dirreccion"/>
             </div>
           </div>
           <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Nueva contraseña</label>
+            <label  class="font-bold ml-2 text-sm mb-1">XContraseña</label>
             <div class="mt-1 w-full">
               <input class="w-full mt-1 p-inputtext" type="password" pInputText [(ngModel)]="cliente.contrasena"/>
             </div>
-            <label  class="font-normal text-blue-300 ml-0 text-sm mb-1">Si no desea cambiar la contraseña dejar vacio</label>
-          </div>
-          <div class="col-6" *ngIf="ocultarBotonContrasenaAntigua">
-            <label  class="font-bold ml-2 text-sm mb-1">X Contraseña actual</label>
-            <div class="mt-1 w-full">
-              <input class="w-full mt-1 p-inputtext" type="password" pInputText [(ngModel)]="contrasena_perfil"/>
-            </div>
           </div>
           <div class="col-12 mt-4 mb-4 flex justify-content-center flex-wrap">
-            <p-button [disabled]="habilitarBotonGuardar()" (click)="editarCliente()" class="button-primary" label="X Guardar"></p-button>
+            <p-button [disabled]="comprobarDartos()"  class="button-primary" label="X Guardar"></p-button>
           </div>
         </div>
       </div>
-    </div>
-    
   </div>
 </div>

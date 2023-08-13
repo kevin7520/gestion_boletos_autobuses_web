@@ -11,6 +11,10 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { HomeComponent } from './View/Pages/home/home.component';
 import { HeaderComponent } from './View/Components/header/header.component';
 import { FooterComponent } from './View/Components/footer/footer.component';
+import { Editar_PerfilComponent } from './View/Pages/cliente/Editar_Perfil/Editar_Perfil.component';
+import { EliminarUsuariosComponent } from './View/Pages/Administrador/eliminar-usuarios/eliminar-usuarios.component';
+import { EditarUsuarioComponent } from './View/Pages/Administrador/editar-usuario/editar-usuario.component';
+
 
 /* Importaciones de prime ng */
 import { ButtonModule } from 'primeng/button';
@@ -24,6 +28,7 @@ import { StepsModule } from 'primeng/steps';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TableModule } from 'primeng/table';
+import { CalendarModule } from 'primeng/calendar';
 
 
 /* Componentes creados */
@@ -43,8 +48,7 @@ import { HoraPipe } from './View/Pipes/hora.pipe';
 /* Font Awesome */
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InputTextModule } from 'primeng/inputtext';
-import { Editar_PerfilComponent } from './View/Pages/cliente/Editar_Perfil/Editar_Perfil.component';
-import { EliminarUsuariosComponent } from './View/Pages/Administrador/eliminar-usuarios/eliminar-usuarios.component';
+import { CrearPerfilComponent } from './View/Pages/cliente/crear-Perfil/crear-Perfil.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -63,7 +67,9 @@ export function createTranslateLoader(http: HttpClient) {
     ClienteComponent,
     Editar_PerfilComponent,
     EliminarUsuariosComponent,
-    HoraPipe
+    HoraPipe,
+    EditarUsuarioComponent,
+    CrearPerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +99,8 @@ export function createTranslateLoader(http: HttpClient) {
     RadioButtonModule,
     InputMaskModule,
     InputTextModule,
-    TableModule
+    TableModule,
+    CalendarModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

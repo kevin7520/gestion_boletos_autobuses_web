@@ -86,7 +86,7 @@ export class ClienteComponent implements OnInit {
                 label: 'X Crear usuario',
                 icon: 'pi pi-refresh',
                 command: () => {
-                    console.log("Actualizo");
+                  this.router.navigateByUrl('/administrador');
                 }
             },
             {
@@ -100,7 +100,7 @@ export class ClienteComponent implements OnInit {
               label: 'X Editar usuario',
               icon: 'pi pi-user-edit',
               command: () => {
-                this.router.navigateByUrl('/usuario/editar-perfil');
+                this.router.navigateByUrl('/administrador/editar-usuario');
               }
             },
             {

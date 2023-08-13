@@ -5,6 +5,8 @@ import { Compra_boletoComponent } from './View/Components/compra_boleto/compra_b
 import { ClienteComponent } from './View/Pages/cliente/cliente.component';
 import { Editar_PerfilComponent } from './View/Pages/cliente/Editar_Perfil/Editar_Perfil.component';
 import { EliminarUsuariosComponent } from './View/Pages/Administrador/eliminar-usuarios/eliminar-usuarios.component';
+import { EditarUsuarioComponent } from './View/Pages/Administrador/editar-usuario/editar-usuario.component';
+import { CrearPerfilComponent } from './View/Pages/cliente/crear-Perfil/crear-Perfil.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,8 +19,9 @@ const routes: Routes = [
   },
   { path: 'administrador', component: ClienteComponent, 
     children: [
-      { path: '', component: Editar_PerfilComponent },
-      { path: 'eliminar-usuario', component: EliminarUsuariosComponent}
+      { path: '', component: CrearPerfilComponent },
+      { path: 'eliminar-usuario', component: EliminarUsuariosComponent},
+      { path: 'editar-usuario', component: EditarUsuarioComponent}
     ],
   }
 ];

@@ -17,11 +17,15 @@
                   <td>{{ product.nombre }}</td>
                   <td>{{ product.apellido }}</td>
                   <td>{{ product.rol }}</td>
-                  <td><p-button (click)="eliminarUsuario(product.id_persona)" class="button-alert" label="Eliminar"></p-button> &nbsp;&nbsp;</td>
+                  <td><p-button (click)="editarUsuario(product.id_persona)" class="button-segundary" label="Editar"></p-button> &nbsp;&nbsp;</td>
               </tr>
           </ng-template>
       </p-table>
-        
     </div>
+    <p-dialog header="Y Editar Usuario" [showHeader]="true" [(visible)]="visibilidadModel" [modal]="true" [style]="{ width: '60vw' }" [draggable]="false" [resizable]="false">
+      <div *ngIf="visibilidadModel" class="-mt-8 w-12 flex justify-content-center flex-wrap">
+        <app-Editar_Perfil></app-Editar_Perfil>
+      </div>
+    </p-dialog>
   </div>
 </div>
