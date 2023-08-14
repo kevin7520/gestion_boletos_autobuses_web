@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { MenuItem} from 'primeng/api';
 
 @Component({
@@ -9,74 +10,77 @@ import { MenuItem} from 'primeng/api';
 export class ClienteComponent implements OnInit {
   items!: MenuItem[];
   constructor(
+    private translate : TranslateService,
     private router : Router
   ) { }
 
   ngOnInit() {
-    switch(localStorage.getItem('rol')){
-      case "4": 
-        this.llenarItemsCliente();
-        break;
-      case "3":
-        this.llenarItemsChofer();
-        break;
-      case "2":
-        this.llenarItemsVendedor();
-        break;
-      case "1":
-        this.llenarItemsAdministrador();
-        break;
-    }
+    this.llenarItems();
+    this.subscribeToLanguageChange();
+
   }
 
-  llenarItemsCliente(){
+  llenarItemsCliente(translations : any){
     this.items = [
       {
-        label: 'X Opciones',
+        label: translations.opciones,
         icon: 'pi pi-cog',
         items: [
-            {
-                label: 'X Comprar boletos',
-                icon: 'pi pi-refresh',
-                command: () => {
-                  this.router.navigateByUrl('/usuario');
-                }
-            },
-            {
-                label: 'X Historial de compras',
-                icon: 'pi pi-shopping-cart',
-                command: () => {
-                  this.router.navigateByUrl('/usuario/editar-perfil');
-                }
-            },
-            {
-              label: 'X Editar perfil',
-              icon: 'pi pi-user-edit',
-              command: () => {
-                this.router.navigateByUrl('/usuario/editar-perfil');
-              }
-            },
-            {
-              label: 'X Cerrar Sesión',
-              icon: 'pi pi-sign-out',
-              command: () => {
-                this.cerrarSesion();
-              }
+          {
+            label: translations.comprar_boletos,
+            icon: 'pi pi-refresh',
+          },
+          {
+            label: translations.historial_compras,
+            icon: 'pi pi-shopping-cart',
+          },
+          {
+            label: translations.editar_perfil,
+            icon: 'pi pi-user-edit',
+            command: () => {
+              this.router.navigateByUrl('/usuario/editar-perfil');
             }
+          },
+          {
+            label: 'X Cerrar Sesión',
+            icon: 'pi pi-sign-out',
+            command: () => {
+              this.cerrarSesion();
+            }
+          }
         ]
       }
     ];
   }
 
-  llenarItemsChofer(){
+  llenarItems(){
+    this.translate.get('cliente').subscribe((translations: any) => {
+      switch(localStorage.getItem('rol')){
+        case "4": 
+          this.llenarItemsCliente(translations);
+          break;
+        case "3":
+          this.llenarItemsChofer(translations);
+          break;
+        case "2":
+          this.llenarItemsVendedor(translations);
+          break;
+        case "1":
+          this.llenarItemsAdministrador(translations);
+          break;
+      }
+    })
+  }
+
+  llenarItemsChofer(translations : any){
 
   }
 
-  llenarItemsVendedor(){
+  llenarItemsVendedor(translations : any){
 
   }
 
-  llenarItemsAdministrador(){
+  llenarItemsAdministrador(translations : any){
     this.items = [
       {
         label: 'X Opciones',
@@ -111,15 +115,24 @@ export class ClienteComponent implements OnInit {
               }
             },
             {
-              label: 'X Cerrar Sesión',
+              label: translations.cerrar_sesion,
               icon: 'pi pi-sign-out',
               command: () => {
                 this.cerrarSesion();
               }
             }
-        ]
+          ]
       }
     ];
+  }
+  
+  subscribeToLanguageChange() {
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      console.log(event)
+      // Cuando se produce un cambio en el idioma, volvemos a llenar los items
+      // para que las etiquetas se actualicen con las nuevas traducciones.
+      this.llenarItems();
+    });
   }
 
   cerrarSesion(){

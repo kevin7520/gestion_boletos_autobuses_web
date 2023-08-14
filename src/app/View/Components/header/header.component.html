@@ -55,17 +55,17 @@
   </header>
 
   <!-- Modale iniciar sesión-->
-  <p-dialog header="Y Iniciar Sección" [showHeader]="true"[(visible)]="inicioSeccion" [modal]="true" [style]="{ width: '30vw' }" [draggable]="false" [resizable]="false">
+  <p-dialog header="{{'header.inicio_sesion' | translate}}" [showHeader]="true"[(visible)]="inicioSeccion" [modal]="true" [style]="{ width: '30vw' }" [draggable]="false" [resizable]="false">
     <span class="p-float-label mt-4 inicio-sesion">
       <input class="w-full" pInputText id="username" [(ngModel)]="credenciales.correo" />
-      <label htmlFor="username">X Correo electronico</label>
+      <label htmlFor="username">{{'header.correo_electronico' | translate}}</label>
     </span>
     <span class="p-float-label mt-6 inicio-sesion">
       <input class="w-full" pInputText id="username" [(ngModel)]="credenciales.password" />
-      <label htmlFor="username">Y Contraseña</label>
+      <label htmlFor="username">{{'header.contraseña' | translate}}</label>
     </span>
     <div class="w-full flex justify-content-center flex-wrap mt-5">
-      <p-button [disabled]="credenciales.correo == '' || credenciales.password == '' " (onClick)="iniciarSession()" class="button-primary" label="Y Continuar"></p-button>
+      <p-button [disabled]="credenciales.correo == '' || credenciales.password == '' " (onClick)="iniciarSession()" class="button-primary" label="{{'header.continuar' | translate}}"></p-button>
     </div>
   </p-dialog>
 

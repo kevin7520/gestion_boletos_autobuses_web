@@ -5,7 +5,11 @@
         "horarios": "Horarios",
         "venta_en_linea": "Venta en Linea",
         "oficinas": "Oficinas",
-        "iniciar_sesion": "Iniciar Sesión"
+        "iniciar_sesion": "Iniciar Sesión",
+        "correo_electronico" : "Correo electronico",
+        "contraseña" : "Contraseña",
+        "continuar" : "Continuar",
+        "inicio_sesion" : "Iniciar Sesión"
     },
     "home" : {
         "cooperativa_transportes": "COOPERATIVA DE TRANSPORTES ECUADOR",
@@ -60,5 +64,52 @@
     },
     "footer" : {
         "cooperativa_transportes_ecuador": "© 2023 COOPERATIVA DE TRANSPORTES ECUADOR"
+    },
+    "compra_boleto" : {
+        "seleccionar_boleto" : "Seleccionar boleto",
+        "seleccionar_asientos" : "Seleccionar asientos",
+        "pago" : "Pago",
+        "ruta" : "Ruta",
+        "asientos" : "Asientos",
+        "ingrese_informacion_pasajero" : "Ingrese información por cada pasajero",
+        "forma_pago" : "Forma de pago",
+        "ingrese_informacion_forma_pago" : "Ingrese información de su forma de pago",
+        "ciudad_partida" : "Ciudad Partida",
+        "ciudad_llegada" : "Ciudad Llegada",
+        "elegir_horario" : "Elegir Horario",
+        "placa_bus" : "Placa Bus",
+        "fecha_salida" : "Fecha de salida",
+        "hora_salida" : "Hora de salida",
+        "precio" : "Precio",
+        "seleccionar" : "Seleccionar",
+        "asiento_libre" : "Asiento libre",
+        "asiento_ocupado" : "Asiento ocupado",
+        "ida" : "IDA",
+        "precio_unitario" : "Precio Unitario",
+        "asientos_disponibles" : "Asientos Disponibles",
+        "nombre" : "Nombre",
+        "celular" : "Celular",
+        "correo" : "Correo",
+        "cantidad_asientos" : "Cantidad Asientos",
+        "precio_final_sin_iva" : "Precio final sin Iva",
+        "precio_final_con_iva" : "Precio final con Iva",
+        "datos_factura" : "Datos de la factura",
+        "tarjeta_credito" : "Tarjeta de crédito",
+        "tarjeta_debito" : "Tarjeta de debito",
+        "numero_tarjeta" : "Numero de la tarjeta",
+        "fecha_expiracion" : "Fecha de expiración",
+        "cvc" : "Cvc",
+        "asiento" : "Asiento",
+        "revise_informacion_no_realizan_devoluciones" : "Revise la información de su compra. Una vez realizado el pago no se realizan devoluciones.",
+        "cedula" : "Cedula",
+        "ruc" : "Ruc",
+        "pasaporte" : "Pasaporte"
+    },
+    "cliente" : {
+        "opciones" : "Opciones",
+        "comprar_boletos": "Comprar boletos",
+        "historial_compras" : "Historial de compras",
+        "editar_perfil" : "Editar perfil",
+        "cerrar_sesion" : "Cerrar Sesión"
     }
 }
