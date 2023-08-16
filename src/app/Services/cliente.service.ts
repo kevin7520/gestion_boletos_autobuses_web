@@ -8,6 +8,9 @@ import { ClientePerfilEditarResponse } from '../Models/Request/Cliente_Perfil/Cl
 import { ClientePerfilEditarRequest } from '../Models/Request/Cliente_Perfil/ClientePerfilEditarRequest';
 import { desactivarUsuarioRequest } from '../Models/Request/Administrador/desactivarUsuarioRequest';
 import { EditarUsuarioAdminRequest } from '../Models/Request/Administrador/EditarUsuarioAdminRequest';
+import { crearUsuarioRequest } from '../Models/Request/Cliente_Perfil/UsuarioCrearRequest';
+import { GeneralResponse } from '../Models/Response/generalResponse';
+import { crearUsuarioAdminRequest } from '../Models/Request/Administrador/crearUsuarioAdminRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -68,5 +71,21 @@ export class ClienteService {
     })
 
     return this.http.post<any>(urlLogin,cliente,{headers:header});
+  }
+
+  crearusuario(cliente : crearUsuarioRequest) : Observable<GeneralResponse> {
+    const urlLogin : string = this.urlEndPoint+'crea-usuario';
+    return this.http.post<GeneralResponse>(urlLogin,cliente);
+  }
+
+  crearusuarioAdmin(cliente : crearUsuarioAdminRequest) : Observable<GeneralResponse> {
+    const urlLogin : string = this.urlEndPoint+'crea-usuario-admin';
+    let token = localStorage.getItem('token');
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer '+token
+    })
+
+    return this.http.post<GeneralResponse>(urlLogin,cliente,{headers:header});
   }
 }

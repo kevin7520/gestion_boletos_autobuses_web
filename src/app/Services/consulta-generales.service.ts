@@ -9,6 +9,8 @@ import { BuscarAsientosRequest } from '../Models/Request/buscarAsientoRequest';
 import { BuscarAsientosResponse } from '../Models/Response/buscar-asientos-respuesta.model';
 import { usuarioRespuestaResponse } from '../Models/Response/Administrador/usuarios-respuesta';
 import { ClientePerfilRequest } from '../Models/Request/Cliente_Perfil/ClientePerfilRequest';
+import { BusResponse } from '../Models/DataResponse/busResponse.model';
+import { busesResponseFinal } from '../Models/Response/busesResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,16 @@ export class ConsultaGeneralesService {
   getCiudades(): Observable<CiudadResponseModel>{
     const urlBuscarCiudad : string = this.urlEndPoint+'buscar_ciudades';
     return this.http.post<CiudadResponseModel>(urlBuscarCiudad,'');
+  }
+ 
+  getBuses(): Observable<busesResponseFinal>{
+    const urlBuscarCiudad : string = this.urlEndPoint+'buscar_buses';
+    return this.http.post<busesResponseFinal>(urlBuscarCiudad,'');
+  }
+
+  getRutas(): Observable<any>{
+    const urlBuscarCiudad : string = this.urlEndPoint+'buscar_rutas';
+    return this.http.post<any>(urlBuscarCiudad,'');
   }
 
   getBoletos(boletoRequest : ConsultarBoletosRequest): Observable<ConsultarBoletosResponseModel>{

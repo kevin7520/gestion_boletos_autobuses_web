@@ -19,7 +19,7 @@
           <div class="col-6">
             <label  class="font-bold ml-2 text-sm mb-1">X Tipo identificación</label>
             <div class="mt-1 w-full">
-              <p-dropdown class="w-full" [options]="tipoIdentificacion" [(ngModel)]="cliente.tipoIdentificacion" optionLabel="name"></p-dropdown>            
+              <p-dropdown class="w-full" [options]="tipoIdentificacion" [(ngModel)]="tipoIdentificacionValue" optionLabel="name"></p-dropdown>            
             </div>
           </div>
           <div class="col-6">
@@ -28,16 +28,16 @@
               <input  class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.identificacion"/>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-6" *ngIf="id_rol==1">
             <label  class="font-bold ml-2 text-sm mb-1">X Tipo de rol</label>
             <div class="mt-1 w-full">
-              <p-dropdown class="w-full" [options]="tipoRol" [(ngModel)]="cliente.tipoRol" optionLabel="name"></p-dropdown> 
+              <p-dropdown class="w-full" [options]="tipoRol" [(ngModel)]="tipoRolValue" optionLabel="name"></p-dropdown> 
             </div>
           </div>
           <div class="col-6">
             <label  class="font-bold ml-2 text-sm mb-1">X Fecha Nacimiento</label>
             <div class="mt-1 w-full">
-              <p-calendar class="w-full" [(ngModel)]="cliente.fechaNacimiento" dateFormat="dd/mm/yy"></p-calendar>
+              <p-calendar class="w-full" [(ngModel)]="fechaValue" [showIcon]="true"  dateFormat="dd/mm/yy"></p-calendar>
             </div>
           </div>
           <div class="col-6">
@@ -65,7 +65,7 @@
             </div>
           </div>
           <div class="col-12 mt-4 mb-4 flex justify-content-center flex-wrap">
-            <p-button [disabled]="comprobarDartos()"  class="button-primary" label="X Guardar"></p-button>
+            <p-button [disabled]="comprobarDartos()" (click)="crearUsuario()"  class="button-primary" label="X Guardar"></p-button>
           </div>
         </div>
       </div>

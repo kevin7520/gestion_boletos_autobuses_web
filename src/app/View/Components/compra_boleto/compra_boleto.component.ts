@@ -99,6 +99,9 @@ export class Compra_boletoComponent implements OnInit {
       })
     ).subscribe((boletosRequest : ConsultarBoletosResponseModel)=>{
       if(boletosRequest.codeResponse==200){
+        boletosRequest.dataResponse?.forEach((resultado,index)=>{
+          boletosRequest.dataResponse![index].fecha_salida = this.swapDayMonth(boletosRequest.dataResponse![index].fecha_salida);
+        });
            this.boletos = boletosRequest.dataResponse!;  
            this.boletos = lodash.sortBy(this.boletos, [
             boleto => new Date(boleto.fecha_salida),
@@ -116,6 +119,12 @@ export class Compra_boletoComponent implements OnInit {
   eliminarCiudadSeleccionada(idCiudad : number){
     lodash.remove(this.ciudadesLlegadaData, (ciudad) => ciudad.id_ciudad == idCiudad);
     this.ciudadLlegada = this.ciudadesLlegadaData[0];
+  }
+
+  swapDayMonth(dateString: string): string {
+    const [datePart, timePart] = dateString.split(" ");
+    const [year, month, day] = datePart.split("/");
+    return `${day}/${month}/${year} ${timePart}`;
   }
 
   /* Eventos inputs */
@@ -158,6 +167,7 @@ export class Compra_boletoComponent implements OnInit {
       this.buscarAsientos(id_boleto);
       this.id = 1;
     }, 500);
+    console.log(this.boletoSeleccionado);
   }
 
   buscarAsientos(id_boleto : number){

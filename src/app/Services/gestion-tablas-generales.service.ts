@@ -6,6 +6,9 @@ import { AccionesAsientosResponse } from '../Models/Response/acciones-asientos-r
 import { Observable } from 'rxjs';
 import { desactivarUsuarioRequest } from '../Models/Request/Administrador/desactivarUsuarioRequest';
 import { desactivarUsuarioResponse } from '../Models/Response/Administrador/desactivarUsuarioResponse';
+import { CrearViajeRequest } from '../Models/Request/crearViajeRequest';
+import { GeneralResponse } from '../Models/Response/generalResponse';
+import { crearViajeAdmin } from '../Models/Request/Administrador/crearViajeAdministrador';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +38,17 @@ export class GestionTablasGeneralesService {
     })
 
     return this.http.post<desactivarUsuarioResponse>(urlLogin,datos,{headers:header});
+  }
+
+  crearViaje(datos : crearViajeAdmin) : Observable<GeneralResponse>{
+    const urlLogin : string = this.urlEndPoint+'crear-viaje';
+    let token = localStorage.getItem('token');
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer '+token
+    })
+
+    return this.http.post<GeneralResponse>(urlLogin,datos,{headers:header});
   }
 
 

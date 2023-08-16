@@ -77,7 +77,35 @@ export class ClienteComponent implements OnInit {
   }
 
   llenarItemsVendedor(translations : any){
-
+    this.items = [
+      {
+        label: 'X Opciones',
+        icon: 'pi pi-cog',
+        items: [
+            {
+                label: 'X Vender Boleto',
+                icon: 'pi pi-refresh',
+                command: () => {
+                  this.router.navigateByUrl('/vendedor');
+                }
+            },
+            {
+              label: 'X Editar usuario',
+              icon: 'pi pi-user-edit',
+              command: () => {
+                this.router.navigateByUrl('/vendedor/editar-usuario');
+              }
+            },
+            {
+              label: translations.cerrar_sesion,
+              icon: 'pi pi-sign-out',
+              command: () => {
+                this.cerrarSesion();
+              }
+            }
+          ]
+      }
+    ];
   }
 
   llenarItemsAdministrador(translations : any){
@@ -111,7 +139,7 @@ export class ClienteComponent implements OnInit {
               label: 'X Crear ruta',
               icon: 'pi pi-user-edit',
               command: () => {
-                this.router.navigateByUrl('/cliente/editar-perfil');
+                this.router.navigateByUrl('/administrador/crear-ruta');
               }
             },
             {

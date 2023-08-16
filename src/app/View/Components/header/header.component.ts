@@ -57,9 +57,15 @@ export class HeaderComponent implements OnInit {
   }
 
   inicioSeccion : boolean = false;
+  crearCuenta : boolean = false;
 
   abrirModal(){
     this.inicioSeccion = true;
+  }
+
+  abrirModalCrearCuenta(){
+    this.inicioSeccion = false;
+    this.crearCuenta = true;
   }
 
   iniciarSession(){
@@ -79,7 +85,7 @@ export class HeaderComponent implements OnInit {
             this._router.navigate(['/chofer']);
             break;
           case "2":
-            this._router.navigate(['/vedndedor']);
+            this._router.navigate(['/vendedor']);
             break;
           case "1":
             this._router.navigate(['/administrador']);

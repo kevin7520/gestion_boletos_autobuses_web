@@ -112,7 +112,7 @@
               <p class="text-sm w-max">{{boleto.placa_bus}}</p>
             </div>
             <div class="col-3 py-0 flex justify-content-center align-content-center flex-wrap">
-              <p class="text-sm w-max">{{boleto.fecha_salida | date:'yyyy-MM-dd'}}</p>
+              <p class="text-sm w-max">{{boleto.fecha_salida | date:'dd/MM/yyyy'}}</p>
             </div>
             <div class="col-3 py-0 flex justify-content-center align-content-center flex-wrap">
               <p class="text-sm w-max">{{boleto.hora_salida | hora}}</p>
@@ -207,7 +207,7 @@
                 <div class="triangle"></div>
               </div>
               <div class="inline-block ml-5">
-                <span class="font-normal text-sm">Fecha: <span class="font-bold">{{boletoSeleccionado.fecha_salida | date:'yyyy-MM-dd'}}</span> Hora: <span class="font-bold">{{boletoSeleccionado.hora_salida | hora}}</span></span>
+                <span class="font-normal text-sm">Fecha: <span class="font-bold">{{boletoSeleccionado.fecha_salida | date:'dd/MM/yyyy'}}</span> Hora: <span class="font-bold">{{boletoSeleccionado.hora_salida | hora}}</span></span>
               </div>
             </div>
             <div class="w-12 flex justify-content-center flex-wrap mt-4">
@@ -293,7 +293,7 @@
               <div class="triangle"></div>
             </div>
             <div class="inline-block ml-5">
-              <span class="font-normal text-sm">Fecha: <span class="font-bold">{{boletoSeleccionado.fecha_salida | date:'yyyy-MM-dd'}}</span> Hora: <span class="font-bold">{{boletoSeleccionado.hora_salida | hora}}</span></span>
+              <span class="font-normal text-sm">Fecha: <span class="font-bold">{{boletoSeleccionado.fecha_salida | date:'dd/MM/yyyy'}}</span> Hora: <span class="font-bold">{{boletoSeleccionado.hora_salida | hora}}</span></span>
             </div>
           </div>
           <div class="w-full mt-3 bg-color-fafaf9 p-2 border-info-asientos">

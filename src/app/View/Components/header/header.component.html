@@ -64,9 +64,18 @@
       <input class="w-full" pInputText id="username" [(ngModel)]="credenciales.password" />
       <label htmlFor="username">{{'header.contraseña' | translate}}</label>
     </span>
+    <div>
+      <p class="mt-4 text-color-30a7c2 text-right w-full cursor-pointer" (click)="abrirModalCrearCuenta()">Crear cuenta</p>
+    </div>
     <div class="w-full flex justify-content-center flex-wrap mt-5">
       <p-button [disabled]="credenciales.correo == '' || credenciales.password == '' " (onClick)="iniciarSession()" class="button-primary" label="{{'header.continuar' | translate}}"></p-button>
     </div>
+  </p-dialog>
+
+  <p-dialog header="Crear cuenta" [showHeader]="true" [(visible)]="crearCuenta" [modal]="true" [style]="{ width: '60vw' }" [draggable]="false" [resizable]="false">
+   <div class="-mt-8">
+    <app-crear-Perfil></app-crear-Perfil>
+   </div>
   </p-dialog>
 
 </div>

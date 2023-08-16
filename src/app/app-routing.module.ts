@@ -7,6 +7,7 @@ import { Editar_PerfilComponent } from './View/Pages/cliente/Editar_Perfil/Edita
 import { EliminarUsuariosComponent } from './View/Pages/Administrador/eliminar-usuarios/eliminar-usuarios.component';
 import { EditarUsuarioComponent } from './View/Pages/Administrador/editar-usuario/editar-usuario.component';
 import { CrearPerfilComponent } from './View/Pages/cliente/crear-Perfil/crear-Perfil.component';
+import { CrearRutaComponent } from './View/Pages/Administrador/crear-ruta/crear-ruta.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,7 +22,14 @@ const routes: Routes = [
     children: [
       { path: '', component: CrearPerfilComponent },
       { path: 'eliminar-usuario', component: EliminarUsuariosComponent},
-      { path: 'editar-usuario', component: EditarUsuarioComponent}
+      { path: 'editar-usuario', component: EditarUsuarioComponent},
+      { path: 'crear-ruta', component: CrearRutaComponent}
+    ],
+  },
+  { path: 'vendedor', component: ClienteComponent, 
+    children: [
+      { path: '', component: Compra_boletoComponent },
+      { path: 'editar-usuario', component: Editar_PerfilComponent}
     ],
   }
 ];

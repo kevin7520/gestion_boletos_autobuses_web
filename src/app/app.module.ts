@@ -49,6 +49,8 @@ import { HoraPipe } from './View/Pipes/hora.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InputTextModule } from 'primeng/inputtext';
 import { CrearPerfilComponent } from './View/Pages/cliente/crear-Perfil/crear-Perfil.component';
+import { CrearRutaComponent } from './View/Pages/Administrador/crear-ruta/crear-ruta.component';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -69,7 +71,8 @@ export function createTranslateLoader(http: HttpClient) {
     EliminarUsuariosComponent,
     HoraPipe,
     EditarUsuarioComponent,
-    CrearPerfilComponent
+    CrearPerfilComponent,
+    CrearRutaComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +103,8 @@ export function createTranslateLoader(http: HttpClient) {
     InputMaskModule,
     InputTextModule,
     TableModule,
-    CalendarModule
+    CalendarModule,
+    InputNumberModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
