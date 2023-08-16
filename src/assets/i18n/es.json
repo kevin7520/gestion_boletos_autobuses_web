@@ -111,5 +111,47 @@
         "historial_compras" : "Historial de compras",
         "editar_perfil" : "Editar perfil",
         "cerrar_sesion" : "Cerrar Sesión"
+    },
+    "crear-Perfil" : {
+        "creacion_usuario" : "Creación de usuario",
+        "nombres" : "Nombres",
+        "apellidos" : "Apellidos",
+        "tipo_identificacion" : "Tipo identificación",
+        "identificacion" : "Identificación",
+        "tipo_rol" : "Tipo de Rol",
+        "fecha_nacimiento" : "Fecha de nacimiento",
+        "correo" : "Correo",
+        "celular" : "Celular",
+        "direccion" : "Direccion",
+        "contraseña" : "Contraseña",
+        "guardar" : "Guardar" 
+    },
+    "eliminar-usuarios" : {
+        "identificacion" : "Identificación",
+        "nombres" : "Nombres",
+        "apellidos" : "Apellidos",
+        "rol" : "Rol",
+        "eliminar" : "Eliminar"
+    },
+    "editar-usuario" : {
+        "identificacion" : "Identificación",
+        "nombres" : "Nombres",
+        "apellidos" : "Apellidos",
+        "rol" : "Rol",
+        "editar" : "Editar"
+    },
+    "Editar_Perfil" : {
+        "editar_perfil" : "Editar perfil",
+        "nombres" : "Nombres",
+        "apellidos" : "Apellidos",
+        "identificacion" : "Identificación",
+        "fecha_nacimiento" : "Fecha de nacimiento",
+        "correo" : "Correo",
+        "celular" : "Celular",
+        "direccion" : "Direccion",
+        "nueva_contraseña" : "Nueva Contraseña",
+        "si_no_desea_cambiar_contraseña" : "Si no desea cambiar la contraseña dejar vacio",
+        "contraseña_actual" : "Contraseña actual",
+        "guardar" : "Guardar"
     }
 }

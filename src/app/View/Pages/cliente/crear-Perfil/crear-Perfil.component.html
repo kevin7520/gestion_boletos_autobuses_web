@@ -1,71 +1,75 @@
 <div class="pt-6 mt-5 mb-8">
   <div class="w-full">
     <div class="col-12 border-round-md border-300 border-solid border-1">
-      <h3 class="w-full text-center text-color-30a7c2 ">Creación de usuario</h3>
+      <h3 class="w-full text-center text-color-30a7c2 ">{{'crear-Perfil.creacion_usuario' | translate}}</h3>
       <div class="w-12 flex justify-content-center flex-wrap mt-4">
         <div class="w-9 grid m-0">
           <div class="col-12 md:col-12 lg:col-6 xl:col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Nombres</label>
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-Perfil.nombres' | translate}}</label>
             <div class="mt-1 w-full">
               <input  class="p-inputtext w-full mt-1" type="text" pInputText [(ngModel)]="cliente.nombres"/>
             </div>
           </div>
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Apellidos</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-Perfil.apellidos' | translate}}</label>
             <div class="mt-1 w-full">
               <input  class="p-inputtext w-full mt-1" type="text" pInputText [(ngModel)]="cliente.apellidos"/>
             </div>
           </div>
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Tipo identificación</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-Perfil.tipo_identificacion' | translate}}</label>
             <div class="mt-1 w-full">
               <p-dropdown class="w-full" [options]="tipoIdentificacion" [(ngModel)]="tipoIdentificacionValue" optionLabel="name"></p-dropdown>            
             </div>
           </div>
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Identificación</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-Perfil.identificacion' | translate}}</label>
             <div class="mt-1 w-full">
               <input  class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.identificacion"/>
             </div>
           </div>
-          <div class="col-6" *ngIf="id_rol==1">
-            <label  class="font-bold ml-2 text-sm mb-1">X Tipo de rol</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6" *ngIf="id_rol==1">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-Perfil.tipo_rol' | translate}}</label>
             <div class="mt-1 w-full">
               <p-dropdown class="w-full" [options]="tipoRol" [(ngModel)]="tipoRolValue" optionLabel="name"></p-dropdown> 
             </div>
           </div>
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Fecha Nacimiento</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-Perfil.fecha_nacimiento' | translate}}</label>
             <div class="mt-1 w-full">
               <p-calendar class="w-full" [(ngModel)]="fechaValue" [showIcon]="true"  dateFormat="dd/mm/yy"></p-calendar>
             </div>
           </div>
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Correo</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-Perfil.correo' | translate}}</label>
             <div class="mt-1 w-full">
               <input class="w-full mt-1 p-inputtext" type="email" pInputText [(ngModel)]="cliente.correo"/>
             </div>
           </div>
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Celular</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-Perfil.celular' | translate}}</label>
             <div class="mt-1 w-full">
               <input class="w-full mt-1 p-inputtext" type="tel" pInputText [(ngModel)]="cliente.telefono"/>
             </div>
           </div>
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Dirrección</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-Perfil.direccion' | translate}}</label>
             <div class="mt-1 w-full">
               <input class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.dirreccion"/>
             </div>
           </div>
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">XContraseña</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-Perfil.contraseña' | translate}}</label>
             <div class="mt-1 w-full">
               <input class="w-full mt-1 p-inputtext" type="password" pInputText [(ngModel)]="cliente.contrasena"/>
             </div>
           </div>
           <div class="col-12 mt-4 mb-4 flex justify-content-center flex-wrap">
+<<<<<<< HEAD
             <p-button [disabled]="comprobarDartos()" (click)="crearUsuario()"  class="button-primary" label="X Guardar"></p-button>
+=======
+            <p-button [disabled]="comprobarDartos()"  class="button-primary" label="{{'crear-Perfil.guardar' | translate}}"></p-button>
+>>>>>>> home-v2
           </div>
         </div>
       </div>

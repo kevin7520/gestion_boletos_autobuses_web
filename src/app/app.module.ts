@@ -36,6 +36,8 @@ import { GB_dialogComponent } from './View/Components/GB_dialog/GB_dialog.compon
 import { GB_buttonComponent } from './View/Components/GB_button/GB_button.component';
 import { Compra_boletoComponent } from './View/Components/compra_boleto/compra_boleto.component';
 import { ClienteComponent } from './View/Pages/cliente/cliente.component';
+import { CrearPerfilComponent } from './View/Pages/cliente/crear-Perfil/crear-Perfil.component';
+import { CrearRutaComponent } from './View/Pages/Administrador/crear-ruta/crear-ruta.component';
 
 /* Traducción */
 
@@ -48,8 +50,6 @@ import { HoraPipe } from './View/Pipes/hora.pipe';
 /* Font Awesome */
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InputTextModule } from 'primeng/inputtext';
-import { CrearPerfilComponent } from './View/Pages/cliente/crear-Perfil/crear-Perfil.component';
-import { CrearRutaComponent } from './View/Pages/Administrador/crear-ruta/crear-ruta.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 
 
