@@ -298,13 +298,14 @@ export class Compra_boletoComponent implements OnInit {
 
     this.asientosSeleccionado.forEach((resultado) => {
       let clientesIndividual : CrearFacturaCliente = {
-        id_cliente : (localStorage.getItem('rol')=='4') ? Number(localStorage.getItem('idPersona')) : null,
+        id_cliente : (localStorage.getItem('rol')=='4') ? Number(localStorage.getItem('idPersona')) : 0,
         identificacion : resultado.cliente.identificacion,
         tipo_identificacion : resultado.cliente.tipo_Identificacion,
         correo : resultado.cliente.correo_cliente,
         celular : resultado.cliente.celular_cliente,
         nombre : resultado.cliente.nombre_cliente,
-        id_asiento : resultado.id_asiento
+        id_asiento : resultado.id_asiento,
+        id_factura : 0
       }
 
       clientesCompra.push(clientesIndividual);
@@ -315,12 +316,23 @@ export class Compra_boletoComponent implements OnInit {
       clientes : clientesCompra
     } 
     console.log(facturaFinal);
-    this._gestionTablasGeneralesService.crearFactura(facturaInfo).subscribe(respuesta=>{
+    this._gestionTablasGeneralesService.crearFactura(facturaFinal).subscribe(respuesta=>{
       if(respuesta.codeResponse == 200){
         this.spinner = true;
         setTimeout(() => {
           this.messageService.add({key: 'comprar-boleto',severity:'success', detail: 'Compra exitosa', icon: 'pi-cog'});
-          this.router.navigateByUrl('');
+          this.spinner = false;
+          if(localStorage.getItem('rol')=='4'){
+            window.location.reload();
+          }
+          else{
+            if(localStorage.getItem('rol')=='2'){
+              window.location.reload();
+            }
+            else{
+              this.router.navigateByUrl('');
+            }
+          }
         }, 2000);
       }
       else{

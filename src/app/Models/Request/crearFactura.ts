@@ -18,7 +18,8 @@ export interface CrearFacturaCliente {
     celular : string;
     nombre : string ;
     id_asiento : number;
-    id_cliente : number | null;
+    id_cliente : number;
+    id_factura : number;
 }
 
 export interface FacturaRequestFinal {
