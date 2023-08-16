@@ -9,6 +9,7 @@ import { desactivarUsuarioResponse } from '../Models/Response/Administrador/desa
 import { CrearViajeRequest } from '../Models/Request/crearViajeRequest';
 import { GeneralResponse } from '../Models/Response/generalResponse';
 import { crearViajeAdmin } from '../Models/Request/Administrador/crearViajeAdministrador';
+import { CrearFacturaRequest } from '../Models/Request/crearFactura';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,11 @@ export class GestionTablasGeneralesService {
     })
 
     return this.http.post<GeneralResponse>(urlLogin,datos,{headers:header});
+  }
+
+  crearFactura(dato : CrearFacturaRequest) : Observable<GeneralResponse>{
+    const urlBuscarCiudad : string = this.urlEndPoint+'crear_factura';
+    return this.http.post<GeneralResponse>(urlBuscarCiudad,dato);
   }
 
 

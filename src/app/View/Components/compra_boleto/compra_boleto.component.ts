@@ -16,6 +16,7 @@ import { AsientosAccionesRequest } from 'src/app/Models/Request/asientosAcciones
 import { GestionTablasGeneralesService } from 'src/app/Services/gestion-tablas-generales.service';
 import { CompraBoletoFinalRequest } from 'src/app/Models/Request/CompraBoleto/compraBoletoFinalRequest';
 import { Router } from '@angular/router';
+import { CrearFacturaCliente, CrearFacturaRequest, FacturaRequestFinal } from 'src/app/Models/Request/crearFactura';
 
 
 
@@ -280,11 +281,53 @@ export class Compra_boletoComponent implements OnInit {
   }
   pagarBoleto(){
     console.log(this.compraBoleto);
-    this.messageService.add({key: 'comprar-boleto',severity:'success', detail: 'Compra exitosa', icon: 'pi-cog'});
-    this.spinner = true;
-    setTimeout(() => {
-      this.router.navigateByUrl('');
-    }, 1000);
+    const facturaInfo : CrearFacturaRequest = {
+      cantidadCompra : this.compraBoleto.asientosSeleccionado.length,
+      idRuta : this.id_boleto,
+      precioFinal : (this.boletoSeleccionado.precio_boleto*this.compraBoleto.asientosSeleccionado.length)*0.12+(this.boletoSeleccionado.precio_boleto*this.compraBoleto.asientosSeleccionado.length),
+      precio_sin_iva : this.boletoSeleccionado.precio_boleto*this.compraBoleto.asientosSeleccionado.length,
+      formaPago : String(this.compraBoleto.formaPago!.tipoFormaPago),
+      identificacion : this.compraBoleto.ClienteBoletoResponse!.identificacion,
+      tipo_identificacion : this.compraBoleto.ClienteBoletoResponse!.tipo_Identificacion,
+      correo : this.compraBoleto.ClienteBoletoResponse!.correo_cliente,
+      celular : this.compraBoleto.ClienteBoletoResponse!.celular_cliente,
+      nombre : this.compraBoleto.ClienteBoletoResponse!.nombre_cliente
+    }
+
+    const clientesCompra : CrearFacturaCliente[] = [];
+
+    this.asientosSeleccionado.forEach((resultado) => {
+      let clientesIndividual : CrearFacturaCliente = {
+        id_cliente : (localStorage.getItem('rol')=='4') ? Number(localStorage.getItem('idPersona')) : null,
+        identificacion : resultado.cliente.identificacion,
+        tipo_identificacion : resultado.cliente.tipo_Identificacion,
+        correo : resultado.cliente.correo_cliente,
+        celular : resultado.cliente.celular_cliente,
+        nombre : resultado.cliente.nombre_cliente,
+        id_asiento : resultado.id_asiento
+      }
+
+      clientesCompra.push(clientesIndividual);
+    });
+
+    const facturaFinal : FacturaRequestFinal = {
+      factura :  facturaInfo,
+      clientes : clientesCompra
+    } 
+    console.log(facturaFinal);
+    this._gestionTablasGeneralesService.crearFactura(facturaInfo).subscribe(respuesta=>{
+      if(respuesta.codeResponse == 200){
+        this.spinner = true;
+        setTimeout(() => {
+          this.messageService.add({key: 'comprar-boleto',severity:'success', detail: 'Compra exitosa', icon: 'pi-cog'});
+          this.router.navigateByUrl('');
+        }, 2000);
+      }
+      else{
+        this.messageService.add({key: 'comprar-boleto',severity:'error', detail: respuesta.messageResponse, icon: 'pi-cog'});
+      }
+    });
+    
   }
 
   bloquearLetras(event: KeyboardEvent) {
