@@ -1,6 +1,6 @@
 <div class="compra-boleto">
   <div class="pt-8 w-full grid m-0">
-    <div class="col-12 sm:col-12 md:col-12 lg:col-12 xl:col-12 bd-color-fcf9f0 flex justify-content-center flex-wrap">
+    <div class="col-12 md:col-12 lg:col-12 xl:col-12 bd-color-fcf9f0 flex justify-content-center flex-wrap">
       <div class="w-max my-4">
         <div class="inline">
           <div class="border-circle inline" [ngClass]="{'bg-color-efbe09 text-white': id==0, 'bg-green-500 font-bold': id>0}">
@@ -64,7 +64,7 @@
     </div>
     <div *ngIf="id==0" class="my-3 w-12 flex justify-content-center align-content-center flex-wrap">
       <div class="w-12 grid">
-        <div class="col-6 flex justify-content-center flex-wrap">
+        <div class="col-12 md:col-6 lg:col-6 xl:col-6 flex justify-content-center flex-wrap">
           <p class="w-12 text-center">{{'compra_boleto.ciudad_partida' | translate}}</p>
           <p-dropdown class="w-6 mt-2" 
                       [options]="ciudadesPartidaData" 
@@ -74,7 +74,7 @@
                       optionLabel="ciudad">
           </p-dropdown>
         </div>
-        <div class="col-6 flex justify-content-center flex-wrap">
+        <div class="col-12 md:col-6 lg:col-6 xl:col-6 flex justify-content-center flex-wrap">
           <p class="w-12 text-center">{{'compra_boleto.ciudad_llegada' | translate}}</p>
           <p-dropdown class="w-6 mt-2" 
                       [options]="ciudadesLlegadaData" 
@@ -91,7 +91,7 @@
         </div>
         <div class="px-3 py-2 grid m-0 w-full">
           <div class="col-12 py-1 grid m-0 bg-color-azul-bajo">
-            <div class="col-2 py-0">
+            <div class="col-2 md:col-2 lg:col-2 xl:col-2 py-0">
               <p class="text-sm w-full text-center font-medium">{{'compra_boleto.placa_bus' | translate}}</p>
             </div>
             <div class="col-3 py-0">
@@ -103,7 +103,7 @@
             <div class="col-2 py-0">
               <p class="text-sm w-full text-center font-medium">{{'compra_boleto.precio' | translate}}</p>
             </div>
-            <div class="col-2 py-0">
+            <div class="col-1 md:col-2 lg:col-2 xl:col-2 py-0">
               <p class="text-sm w-full text-center font-medium">{{'compra_boleto.seleccionar' | translate}}</p>
             </div>
           </div>
@@ -121,7 +121,7 @@
               <p class="text-sm w-max">{{boleto.precio_boleto | currency}}</p>
             </div>
             <div class="col-2 py-0 flex justify-content-center align-content-center flex-wrap">
-              <p-button (onClick)="seleccionarBoleto(boleto.id_boleto)" class="button-primary" label="Y Comprar"></p-button>
+              <p-button (onClick)="seleccionarBoleto(boleto.id_boleto)" class="button-primary" label="{{'compra_boleto.comprar' | translate}}"></p-button>
             </div>
             <div class="table w-full mt-1">
               <hr>
@@ -376,25 +376,25 @@
                     </div>
                   </div>
                 <div class="w-full grid m-0 mt-2">
-                    <div class="col-6">
+                    <div class="col-12 md:col-6 lg:col-6 xl:col-6">
                       <label class="font-bold ml-1 text-sm">{{'compra_boleto.nombre' | translate}}</label>
                       <div class="w-full">
                         <input class="w-full mt-1" type="text" pInputText (keypress)="bloquearNumeros($event)" [(ngModel)]="compraBoleto.formaPago!.nombre"/>
                       </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 md:col-6 lg:col-6 xl:col-6">
                       <label for="numeroTarjeta" class="ml-1 text-sm font-bold">{{'compra_boleto.numero_tarjeta' | translate}}</label>
                       <div class="w-full mt-1">
                         <p-inputMask mask="9999-9999-9999-9999" [(ngModel)]="compraBoleto.formaPago!.numero_tarjeta" ></p-inputMask>
                       </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 md:col-6 lg:col-6 xl:col-6">
                       <label for="fechaTarjeta" class="ml-1 text-sm font-bold">{{'compra_boleto.fecha_expiracion' | translate}}</label>
                       <div class="w-full mt-1">
                         <p-inputMask mask="99/9999" [(ngModel)]="compraBoleto.formaPago!.fecha_expiracion"></p-inputMask>
                       </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 md:col-6 lg:col-6 xl:col-6">
                       <label for="codigoTarjeta" class="ml-1 text-sm font-bold">{{'compra_boleto.cvc' | translate}}</label>
                       <div class="w-full mt-1">
                         <p-inputMask mask="999?9" [(ngModel)]="compraBoleto.formaPago!.codigo_tarjeta"></p-inputMask>

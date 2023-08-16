@@ -9,7 +9,8 @@
         "correo_electronico" : "Correo electronico",
         "contraseña" : "Contraseña",
         "continuar" : "Continuar",
-        "inicio_sesion" : "Iniciar Sesión"
+        "inicio_sesion" : "Iniciar Sesión",
+        "ultimos_inicio_sesion" : "Ultimo inicio de sesion"
     },
     "home" : {
         "cooperativa_transportes": "COOPERATIVA DE TRANSPORTES ECUADOR",
@@ -103,7 +104,8 @@
         "revise_informacion_no_realizan_devoluciones" : "Revise la información de su compra. Una vez realizado el pago no se realizan devoluciones.",
         "cedula" : "Cedula",
         "ruc" : "Ruc",
-        "pasaporte" : "Pasaporte"
+        "pasaporte" : "Pasaporte",
+        "comprar" : "Comprar"
     },
     "cliente" : {
         "opciones" : "Opciones",
@@ -138,7 +140,8 @@
         "nombres" : "Nombres",
         "apellidos" : "Apellidos",
         "rol" : "Rol",
-        "editar" : "Editar"
+        "editar" : "Editar",
+        "editar_usuario" : "Editar Usuario"
     },
     "Editar_Perfil" : {
         "editar_perfil" : "Editar perfil",
@@ -152,6 +155,15 @@
         "nueva_contraseña" : "Nueva Contraseña",
         "si_no_desea_cambiar_contraseña" : "Si no desea cambiar la contraseña dejar vacio",
         "contraseña_actual" : "Contraseña actual",
+        "guardar" : "Guardar"
+    },
+    "crear-ruta" : {
+        "crear_viaje" : "Crear viaje", 
+        "hora_salida" : "Hora de salida",
+        "fecha_salida" : "Fecha de salida",
+        "bus" : "Bus",
+        "ruta" : "Ruta",
+        "precio" : "Precio",
         "guardar" : "Guardar"
     }
 }

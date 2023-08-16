@@ -1,41 +1,41 @@
 <div class="pt-6 mt-5 mb-8">
   <div class="w-full">
     <div class="w-12 border-round-md border-300 border-solid border-1">
-      <p class="text-xl text-center mt-4 text-color-30a7c2">Crear viaje</p>
+      <p class="text-xl text-center mt-4 text-color-30a7c2">{{'crear-ruta.crear_viaje' | translate}}</p>
       <div class="w-12 flex justify-content-center flex-wrap mt-4">
         <div class="w-9 grid m-0">
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Hora de salida</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-ruta.hora_salida' | translate}}</label>
             <div class="mt-1 w-full">
               <p-calendar class="w-full" [(ngModel)]="hora_salida" [timeOnly]="true"></p-calendar>
             </div>
           </div>
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Fecha de salida</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-ruta.fecha_salida' | translate}}</label>
             <div class="mt-1 w-full">
               <p-calendar class="w-full" [(ngModel)]="fecha_salida" [showIcon]="true" dateFormat="dd/mm/yy"></p-calendar>
             </div>
           </div>
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Bus</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-ruta.bus' | translate}}</label>
             <div class="mt-1 w-full">
               <p-dropdown class="w-full" [options]="buses" [(ngModel)]="busElegido" optionLabel="name"></p-dropdown> 
             </div>
           </div>
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Ruta</label>
+          <div class="col-12 md:col-12 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-ruta.ruta' | translate}}</label>
             <div class="mt-1 w-full">
               <p-dropdown class="w-full" [options]="rutas" [(ngModel)]="rutaElegido" optionLabel="name"></p-dropdown> 
             </div>
           </div>
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Precio</label>
+          <div class="col-4 md:col-6 lg:col-6 xl:col-6">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'crear-ruta.precio' | translate}}</label>
             <div class="mt-1 w-full">
               <p-inputNumber [(ngModel)]="viaje.precio" inputId="currency-us" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
             </div>
           </div>
           <div class="col-12 mt-4 mb-4 flex justify-content-center flex-wrap">
-            <p-button [disabled]="fecha_salida==null || hora_salida==null" (click)="guardarViaje()" class="button-primary" label="X Guardar"></p-button>
+            <p-button [disabled]="fecha_salida==null || hora_salida==null" (click)="guardarViaje()" class="button-primary" label="{{'crear-ruta.guardar' |translate}}"></p-button>
           </div>
         </div>
       </div>

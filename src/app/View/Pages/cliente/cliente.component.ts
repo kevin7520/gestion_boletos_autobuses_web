@@ -42,7 +42,7 @@ export class ClienteComponent implements OnInit {
             }
           },
           {
-            label: 'X Cerrar Sesión',
+            label: translations.cerrar_sesion,
             icon: 'pi pi-sign-out',
             command: () => {
               this.cerrarSesion();
