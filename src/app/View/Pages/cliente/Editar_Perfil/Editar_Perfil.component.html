@@ -1,66 +1,66 @@
 <div class="pt-6 mt-5 mb-8 editar-perfil">
   <div class="w-full">
     <div class="w-12 border-round-md border-300 border-solid border-1">
-      <p class="text-xl text-center mt-4 text-color-30a7c2">Editar Perfil ({{cliente.rol}})</p>
+      <p class="text-xl text-center mt-4 text-color-30a7c2">{{'Editar_Perfil.editar_perfil' | translate}} ({{cliente.rol}})</p>
       <div class="w-12 flex justify-content-center flex-wrap mt-4">
         <div class="w-9 grid m-0">
-          <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Nombres</label>
+          <div class="col-6 md:col-6 lg:col-12 xl:col-12">
+            <label  class="font-bold ml-2 text-sm mb-1">{{'Editar_Perfil.nombres' | translate}}</label>
             <div class="mt-1 w-full">
               <input [disabled]="true" class="p-inputtext w-full mt-1" type="text" pInputText [(ngModel)]="cliente.nombre"/>
             </div>
           </div>
           <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Apellidos</label>
+            <label  class="font-bold ml-2 text-sm mb-1">{{'Editar_Perfil.apellidos' | translate}}</label>
             <div class="mt-1 w-full">
               <input [disabled]="true" class="p-inputtext w-full mt-1" type="text" pInputText [(ngModel)]="cliente.apellido"/>
             </div>
           </div>
           <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Identificación</label>
+            <label  class="font-bold ml-2 text-sm mb-1">{{'Editar_Perfil.identificacion' | translate}}</label>
             <div class="mt-1 w-full">
               <input [disabled]="true" class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.identificacion"/>
             </div>
           </div>
           <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Fecha Nacimiento</label>
+            <label  class="font-bold ml-2 text-sm mb-1">{{'Editar_Perfil.fecha_nacimiento' | translate}}</label>
             <div class="mt-1 w-full">
               <input [disabled]="true" class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.fecha_nacimiento"/>
             </div>
           </div>
           <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Correo</label>
+            <label  class="font-bold ml-2 text-sm mb-1">{{'Editar_Perfil.correo' | translate}}</label>
             <div class="mt-1 w-full">
               <input class="w-full mt-1 p-inputtext" type="email" pInputText [(ngModel)]="cliente.correo"/>
             </div>
           </div>
           <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Celular</label>
+            <label  class="font-bold ml-2 text-sm mb-1">{{'Editar_Perfil.celular' | translate}}</label>
             <div class="mt-1 w-full">
               <input class="w-full mt-1 p-inputtext" type="tel" pInputText [(ngModel)]="cliente.telefono"/>
             </div>
           </div>
           <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Dirrección</label>
+            <label  class="font-bold ml-2 text-sm mb-1">{{'Editar_Perfil.direccion' | translate}}</label>
             <div class="mt-1 w-full">
               <input class="w-full mt-1 p-inputtext" type="text" pInputText [(ngModel)]="cliente.direccion"/>
             </div>
           </div>
           <div class="col-6">
-            <label  class="font-bold ml-2 text-sm mb-1">X Nueva contraseña</label>
+            <label  class="font-bold ml-2 text-sm mb-1">{{'Editar_Perfil.nueva_contraseña' | translate}}</label>
             <div class="mt-1 w-full">
               <input class="w-full mt-1 p-inputtext" type="password" pInputText [(ngModel)]="cliente.contrasena"/>
             </div>
-            <label  class="font-normal text-blue-300 ml-0 text-sm mb-1">Si no desea cambiar la contraseña dejar vacio</label>
+            <label  class="font-normal text-blue-300 ml-0 text-sm mb-1">{{'Editar_Perfil.si_no_desea_cambiar_contraseña' | translate}}</label>
           </div>
           <div class="col-6" *ngIf="ocultarBotonContrasenaAntigua">
-            <label  class="font-bold ml-2 text-sm mb-1">X Contraseña actual</label>
+            <label  class="font-bold ml-2 text-sm mb-1">{{'Editar_Perfil.contraseña_actual' | translate}}</label>
             <div class="mt-1 w-full">
               <input class="w-full mt-1 p-inputtext" type="password" pInputText [(ngModel)]="contrasena_perfil"/>
             </div>
           </div>
           <div class="col-12 mt-4 mb-4 flex justify-content-center flex-wrap">
-            <p-button [disabled]="habilitarBotonGuardar()" (click)="editarCliente()" class="button-primary" label="X Guardar"></p-button>
+            <p-button [disabled]="habilitarBotonGuardar()" (click)="editarCliente()" class="button-primary" label="{{'Editar_Perfil.guardar' | translate}}"></p-button>
           </div>
         </div>
       </div>
